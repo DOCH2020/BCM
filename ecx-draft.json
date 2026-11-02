@@ -1,0 +1,34 @@
+{
+  "id": "bcm-ecx",
+  "name": "BCM ECX Node",
+  "status": "draft-not-installable",
+  "tagline": "Your ECX node. Your mining work. Your block.",
+  "developer": "Bluefields Cryptocurrency Mining",
+  "interface_language": "English",
+  "description": "Run an unpruned ECX node, mining enforcer and local SOLO pool with the BCM dashboard. Configure your own ECX receiving address. Mining remains gated until synchronization and ECX template checks pass.",
+  "icon_asset": "ecx-icon.png",
+  "mode": "SOLO",
+  "pool_fee_percent": 0,
+  "stratum": "V1",
+  "pplns_enabled": false,
+  "themes": [
+    "dark",
+    "light"
+  ],
+  "initial_beta_architecture": "linux/amd64",
+  "arm64_verified": false,
+  "hardware_guidance": {
+    "ram_gb": 16,
+    "recommended_ssd_tb": 2
+  },
+  "ports_proposed": {
+    "dashboard": 8088,
+    "asic": 3334,
+    "rentals": 3335
+  },
+  "port_conflict_check_required": true,
+  "external_rental_access_configured": false,
+  "repository_url": "https://github.com/DOCH2020/BCM",
+  "runtime_images": null,
+  "fresh_umbrel_install_verified": false
+}

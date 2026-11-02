@@ -1,0 +1,20 @@
+# This store contains distribution metadata and public assets only.
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+*.key
+*.pem
+*.sqlite*
+*.db
+*.db-*
+wallet.dat
+.cookie
+data/
+chain/
+blocks/
+chainstate/
+node_modules/
+build/
+dist/
