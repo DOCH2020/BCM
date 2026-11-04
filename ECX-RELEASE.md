@@ -7,13 +7,13 @@ catalog until the following work is complete.
 ## Completed in isolated development tests
 
 - Clean private AMD64 image built and OCI-audited, with pool unit suites and
-  seven in-image checks passing. No public image is available yet.
+  nine in-image checks passing. No public image is available yet.
 - Browser first-run setup validates an owner-provided address against the node
   and keeps settings across process restarts. Synthetic RPC tests cover owner
   isolation and rejection of invalid or repeated setup requests.
 - SOLO only, zero pool fee, separate services, authenticated app-proxy package
   contract, persistent data directories, and graceful shutdown configuration.
-- Five local browser workflows and twelve setup/package tests passed. These
+- Six local browser workflows and twelve setup/package tests passed. These
   do not exercise a real Umbrel proxy or lifecycle.
 - Read-only destination capacity/interface/port preflight and fresh-report LAN
   rendering gate, with three synthetic regression groups passing. No real

@@ -21,12 +21,16 @@ An app will appear only after its installable manifest and public runtime
 images pass the release checks. The draft below is intentionally outside
 the app catalog, so Umbrel cannot offer an incomplete installation.
 
-## ECX development update — November 4, 2026
+## ECX development update â€” November 4, 2026
 
-The private Linux AMD64 image is built and audited. Pool unit suites and seven
+The private Linux AMD64 image is built and audited. Pool unit suites and nine
 in-image checks passed. Browser setup, per-install receiving-address validation,
 owner isolation, persistent settings, and retained pool/worker best shares have
 isolated test coverage. The app is SOLO only with a zero pool fee.
+
+The rebuilt private image includes an optional “Invite me to a coffee” section
+with owner-approved ECX/BTC donation addresses and tested copy buttons. Support
+is voluntary; donation addresses never replace an installer's mining payout.
 
 Twelve local setup/package tests and three destination-preflight regression
 groups pass. The destination check requires adequate RAM and free storage,

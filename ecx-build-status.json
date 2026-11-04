@@ -4,16 +4,16 @@
   "version": "0.1.0-beta.1",
   "status": "private-build-tested-not-installable",
   "architecture": "linux/amd64",
-  "oci_manifest_digest": "sha256:94e4d771cb0e533a44648117199cedeb090424fa6236a7a514717f5814132e58",
-  "archive_sha256": "72acadc799db53cf2d28bb7eaa742f3a52e69449c370fcf2918e4423f3a3ebea",
-  "archive_bytes": 98809344,
+  "oci_manifest_digest": "sha256:981d980179ffa5dcdce0f5c1c6cf0cf9e3bfa75b4d1778cdc67a85653a5c98a7",
+  "archive_sha256": "72a140b64a71b0c6fe72351eacda6d6c95a8243af21de4b21556d1ebfaa37c7d",
+  "archive_bytes": 98810880,
   "public_image_reference": null,
   "published": false,
   "tests": {
     "pool_unit_suites_passed": true,
-    "in_image_checks_passed": 7,
+    "in_image_checks_passed": 9,
     "portable_setup_package_tests_passed": 12,
-    "portable_browser_workflows_passed": 5,
+    "portable_browser_workflows_passed": 6,
     "destination_preflight_regression_groups_passed": 3,
     "rpc_scope": "synthetic fixtures",
     "real_umbrel_lifecycle_verified": false,
@@ -28,5 +28,6 @@
     "Publish reviewed public version-tagged digest-pinned images",
     "Build and test ARM64 before any ARM support claim",
     "Run official package and image checks against the release candidate"
-  ]
+  ],
+  "coffee_donations_included": true
 }
