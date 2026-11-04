@@ -4,7 +4,7 @@ Community applications from Bluefields Cryptocurrency Mining for Umbrel.
 
 **Status: private AMD64 app build tested. No installable apps in the store yet.**
 
-The first planned app is **BCM ECX Node**: a local ECX full node, mining
+The first planned app is **BCM ECX Node (Beta)**: a local ECX full node, mining
 enforcer, SOLO Stratum service and BCM dashboard. ECX is distinct from XEC
 and Bitcoin BTC. The intended interface is English with light/dark themes.
 
@@ -20,6 +20,8 @@ installable applications; BCM ECX Node is still a draft.
 An app will appear only after its installable manifest and public runtime
 images pass the release checks. The draft below is intentionally outside
 the app catalog, so Umbrel cannot offer an incomplete installation.
+
+**Release label: BCM ECX Node (Beta) — 0.1.0-beta.1.** See [beta release notes](BETA-RELEASE.md).
 
 ## ECX development update â€” November 4, 2026
 
