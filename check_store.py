@@ -12,6 +12,15 @@ assert (root / draft['icon_asset']).is_file(), 'Missing app icon'
 assert draft['status'] == 'draft-not-installable'
 assert draft['runtime_images'] is None
 assert not draft['fresh_umbrel_install_verified']
+build = json.loads((root / draft['build_status_file']).read_text())
+assert build['app_id'] == draft['id']
+assert build['status'] == 'private-build-tested-not-installable'
+assert build['architecture'] == 'linux/amd64'
+assert not build['published'] and build['public_image_reference'] is None
+assert not build['tests']['real_umbrel_lifecycle_verified']
+assert not build['tests']['arm64_verified']
+assert re.fullmatch(r'sha256:[a-f0-9]{64}', build['oci_manifest_digest'])
+assert re.fullmatch(r'[a-f0-9]{64}', build['archive_sha256'])
 catalog = list(root.glob('*/umbrel-app.yml'))
 assert not catalog, 'Installable apps need a separate release validation gate'
 patterns = [

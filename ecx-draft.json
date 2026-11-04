@@ -30,5 +30,7 @@
   "external_rental_access_configured": false,
   "repository_url": "https://github.com/DOCH2020/BCM",
   "runtime_images": null,
-  "fresh_umbrel_install_verified": false
+  "fresh_umbrel_install_verified": false,
+  "private_amd64_image_built": true,
+  "build_status_file": "ecx-build-status.json"
 }
