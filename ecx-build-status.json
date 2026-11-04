@@ -29,5 +29,8 @@
     "Build and test ARM64 before any ARM support claim",
     "Run official package and image checks against the release candidate"
   ],
-  "coffee_donations_included": true
+  "coffee_donations_included": true,
+  "release_channel": "beta",
+  "release_title": "BCM ECX Node (Beta) \u2014 0.1.0-beta.1",
+  "prerelease": true
 }

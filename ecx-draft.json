@@ -1,6 +1,6 @@
 {
   "id": "bcm-ecx",
-  "name": "BCM ECX Node",
+  "name": "BCM ECX Node (Beta)",
   "status": "draft-not-installable",
   "tagline": "Your ECX node. Your mining work. Your block.",
   "developer": "Bluefields Cryptocurrency Mining",
@@ -32,5 +32,7 @@
   "runtime_images": null,
   "fresh_umbrel_install_verified": false,
   "private_amd64_image_built": true,
-  "build_status_file": "ecx-build-status.json"
+  "build_status_file": "ecx-build-status.json",
+  "release_channel": "beta",
+  "version": "0.1.0-beta.1"
 }
