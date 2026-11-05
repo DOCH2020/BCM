@@ -1,53 +1,20 @@
-# BCM ECX Node release gates
+# Published AMD64 beta
 
-The existing personal deployment is operational. That is not yet proof that a
-new owner's Umbrel can install this app. Do not promote this draft into the
-catalog until the following work is complete.
+The owner approved publication on November 5, 2026. This community-store beta
+uses the gold 3D ECX icon. The runtime image is publicly available and
+Compose pins its verified registry digest. Native Umbrel lifecycle testing
+remains pending with the independent tester. PPLNS and ARM64 are not included.
 
-## Completed in isolated development tests
+Anonymous GHCR manifest, configuration and all 13 layer endpoints passed.
+The publication workflow verified the source archive SHA256 before import.
+Static catalog checks pass. Source/private-image/setup/browser checks are
+recorded in ecx-build-status.json and do not constitute native installation proof.
 
-- Clean private AMD64 image built and OCI-audited, with pool unit suites and
-  nine in-image checks passing. No public image is available yet.
-- Browser first-run setup validates an owner-provided address against the node
-  and keeps settings across process restarts. Synthetic RPC tests cover owner
-  isolation and rejection of invalid or repeated setup requests.
-- SOLO only, zero pool fee, separate services, authenticated app-proxy package
-  contract, persistent data directories, and graceful shutdown configuration.
-- Six local browser workflows and twelve setup/package tests passed. These
-  do not exercise a real Umbrel proxy or lifecycle.
-- Read-only destination capacity/interface/port preflight and fresh-report LAN
-  rendering gate, with three synthetic regression groups passing. No real
-  destination has been qualified; owner-facing selection remains unfinished.
+Remaining test work: actual Umbrel fresh install, authenticated first launch,
+owner setup, synchronization, independent ASIC acceptance, restart, upgrade
+and storage relocation. Use TEST-RESULTS.md for the report.
 
-## Remaining release gates
+Enforcer redistribution clearance remains unconfirmed. The owner-approved
+publication does not establish a third-party license grant. Preserve all notices.
 
-- Resolve enforcer redistribution terms; the bounded pinned-source review did
-  not establish a license grant. Do not publish its executable until resolved.
-
-- Retain the configured repository/support URLs, store prefix `bcm` and stable
-  app ID `bcm-ecx` when generating the final versioned install manifest.
-- Preserve the clean-image source provenance and dependency/license notices.
-  Do not reuse image layers containing personal configuration.
-- Publish version-tagged images pinned by digest in a public registry. No
-  `latest`, local Docker image IDs, private credentials or runtime Compose builds.
-- Verify the existing first-run configuration and persistent settings through
-  real Umbrel authentication over HTTP and HTTPS. No bundled payout fallback.
-- Verify that the persistent settings, chain, ledger and best-share history
-  survive real Umbrel restarts, upgrades and storage relocation.
-- Retain authenticated `app_proxy` and loopback-only administrative endpoints.
-  No Docker socket, host networking or privileged containers.
-- Finish owner-facing LAN interface selection and run destination preflight
-  for ports 8088, 3334 and 3335 immediately before installation. Never displace
-  another installed app or take over the existing personal deployment.
-- Keep synchronization, ECX fork-identity and current-template mining gates.
-  Re-run isolated coinbase/commitment tests and verify actual ASIC submissions.
-- Run native Umbrel fresh install, first launch, authentication, setup, restart,
-  persistence, upgrade and relocation tests. Record exact OS and architecture.
-- State AMD64-only beta support until ARM64 builds and tests are complete.
-  Meeting official Umbrel App Store requirements is a separate milestone.
-- Run final privacy and artifact checks. Do not upload credentials, miner
-  endpoints, personal payout files, wallet material or chain/ledger databases.
-
-Publishing this store foundation does not imply the draft app is ready to
-install. No production node, pool or data volume should be replaced for these
-preparation steps.
+The existing personal Umbrel installation and BCM mining services were unchanged.

@@ -26,4 +26,4 @@ for name in ['enforcer','pool','dashboard']:
 for name in ['chain','enforcer','pool','settings']:
     assert (app/'data'/name/'.gitkeep').exists()
 assert 'BCM_SETUP_PASSWORD' in services['dashboard']['environment']
-print(json.dumps({'static_checks_passed':True,'uses_3d_ecx_icon':True,'public_image_verified':False,'umbrel_install_verified':False}))
+print(json.dumps({'static_checks_passed':True,'uses_3d_ecx_icon':True,'registry_check':'separate anonymous check','umbrel_install_verified':False}))

@@ -1,7 +1,7 @@
 {
   "id": "bcm-ecx",
   "name": "BCM ECX Node (Beta)",
-  "status": "draft-not-installable",
+  "status": "published-amd64-beta",
   "tagline": "Your ECX node. Your mining work. Your block.",
   "developer": "Bluefields Cryptocurrency Mining",
   "interface_language": "English",
@@ -29,7 +29,9 @@
   "port_conflict_check_required": true,
   "external_rental_access_configured": false,
   "repository_url": "https://github.com/DOCH2020/BCM",
-  "runtime_images": null,
+  "runtime_images": {
+    "linux/amd64": "ghcr.io/doch2020/bcm-ecx:0.1.0-beta.1@sha256:d0e90d52461642cf68afecfecc01809085945881b4670de759ed1009070c8e1b"
+  },
   "fresh_umbrel_install_verified": false,
   "private_amd64_image_built": true,
   "build_status_file": "ecx-build-status.json",

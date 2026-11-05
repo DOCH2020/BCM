@@ -1,8 +1,5 @@
 name: Publish audited ECX beta image
 on:
-  push:
-    paths:
-      - '.github/workflows/publish-ecx-beta.yml'
   workflow_dispatch:
 permissions:
   contents: read
@@ -30,4 +27,3 @@ jobs:
           docker push ghcr.io/doch2020/bcm-ecx:0.1.0-beta.1
           docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/doch2020/bcm-ecx:0.1.0-beta.1 | tee image-reference.txt
           cat image-reference.txt >> "$GITHUB_STEP_SUMMARY"
-

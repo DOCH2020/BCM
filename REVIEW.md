@@ -1,26 +1,11 @@
-# BCM ECX Node beta catalog change
+# ECX beta publication record
 
-This change adds the `bcm-ecx` catalog layout with the existing gold 3D ECX icon.
-It is prepared for review, not merged into the public store yet.
+The owner approved public publication of the beta OCI archive and GHCR image
+on November 5, 2026. Anonymous pull was verified for the registry manifest,
+runtime configuration and all referenced layers. Compose uses that registry
+digest, not the earlier private OCI manifest digest. The gold 3D icon matches
+the existing public icon byte for byte.
 
-The runtime image is still private. Before merging, publish the audited
-0.1.0-beta.1 AMD64 image to `ghcr.io/doch2020/bcm-ecx`, confirm anonymous pull,
-and replace every Compose image reference with the verified registry digest.
-The current digest is the audited private archive's manifest, not a claim that
-the registry tag is publicly available.
-
-The manifest explicitly identifies an untested AMD64 beta. Real Umbrel lifecycle
-testing is delegated to the owner's helper. The app uses SOLO with zero fee;
-each owner configures their own receiving address. Ports 3334/3335 are published
-on host interfaces for miners; no router forwarding or administrative RPC
-exposure is configured. Node, enforcer, pool and dashboard retain the separated
-service/storage layout. Never install onto the existing personal mining host
-without its own capacity and port-conflict checks.
-
-Publication approval needed: expose the audited 98,810,880-byte OCI archive at
-`https://bcmpool.online/bcm-ecx-0.1.0-beta.1-amd64.oci.tar`, then import it into
-GHCR using a repository workflow. This makes the bundled executable software
-public; upstream enforcer redistribution clearance remains unconfirmed. The
-archive checksum is `72a140b64a71b0c6fe72351eacda6d6c95a8243af21de4b21556d1ebfaa37c7d`.
-
-No runtime image has been published by this catalog preparation.
+This is an AMD64 community-store beta. Real Umbrel lifecycle testing is pending
+with the owner's helper. Enforcer redistribution clearance remains unconfirmed.
+No live mining service or personal Umbrel installation was restarted or changed.
