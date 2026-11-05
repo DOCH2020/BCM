@@ -1,0 +1,168 @@
+{
+  "services": {
+    "app_proxy": {
+      "environment": {
+        "APP_HOST": "bcm-ecx_node_1",
+        "APP_PORT": "8088"
+      }
+    },
+    "node": {
+      "image": "ghcr.io/doch2020/bcm-ecx:0.1.0-beta.1@sha256:d0e90d52461642cf68afecfecc01809085945881b4670de759ed1009070c8e1b",
+      "platform": "linux/amd64",
+      "user": "1000:1000",
+      "init": true,
+      "restart": "on-failure",
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "tmpfs": [
+        "/tmp:rw,size=64m,mode=1777"
+      ],
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      },
+      "command": [
+        "node"
+      ],
+      "mem_limit": "5g",
+      "cpus": 4,
+      "stop_grace_period": "180s",
+      "volumes": [
+        "${APP_DATA_DIR}/data/chain:/node"
+      ],
+      "ports": [
+        "3334:3334/tcp",
+        "3335:3335/tcp"
+      ]
+    },
+    "enforcer": {
+      "image": "ghcr.io/doch2020/bcm-ecx:0.1.0-beta.1@sha256:d0e90d52461642cf68afecfecc01809085945881b4670de759ed1009070c8e1b",
+      "platform": "linux/amd64",
+      "user": "1000:1000",
+      "init": true,
+      "restart": "on-failure",
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "tmpfs": [
+        "/tmp:rw,size=64m,mode=1777"
+      ],
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      },
+      "command": [
+        "enforcer"
+      ],
+      "mem_limit": "8g",
+      "cpus": 3,
+      "stop_grace_period": "120s",
+      "network_mode": "service:node",
+      "depends_on": [
+        "node"
+      ],
+      "volumes": [
+        "${APP_DATA_DIR}/data/chain:/node:ro",
+        "${APP_DATA_DIR}/data/settings:/settings:ro",
+        "${APP_DATA_DIR}/data/enforcer:/enforcer"
+      ]
+    },
+    "pool": {
+      "image": "ghcr.io/doch2020/bcm-ecx:0.1.0-beta.1@sha256:d0e90d52461642cf68afecfecc01809085945881b4670de759ed1009070c8e1b",
+      "platform": "linux/amd64",
+      "user": "1000:1000",
+      "init": true,
+      "restart": "on-failure",
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "tmpfs": [
+        "/tmp:rw,size=64m,mode=1777"
+      ],
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      },
+      "command": [
+        "pool"
+      ],
+      "mem_limit": "512m",
+      "cpus": 1,
+      "stop_grace_period": "45s",
+      "network_mode": "service:node",
+      "depends_on": [
+        "node",
+        "enforcer"
+      ],
+      "volumes": [
+        "${APP_DATA_DIR}/data/chain:/node:ro",
+        "${APP_DATA_DIR}/data/settings:/settings:ro",
+        "${APP_DATA_DIR}/data/pool:/pool"
+      ]
+    },
+    "dashboard": {
+      "image": "ghcr.io/doch2020/bcm-ecx:0.1.0-beta.1@sha256:d0e90d52461642cf68afecfecc01809085945881b4670de759ed1009070c8e1b",
+      "platform": "linux/amd64",
+      "user": "1000:1000",
+      "init": true,
+      "restart": "on-failure",
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "tmpfs": [
+        "/tmp:rw,size=64m,mode=1777"
+      ],
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      },
+      "command": [
+        "dashboard"
+      ],
+      "mem_limit": "256m",
+      "cpus": 0.5,
+      "network_mode": "service:node",
+      "depends_on": [
+        "node"
+      ],
+      "environment": {
+        "BCM_SETUP_PASSWORD": "${APP_PASSWORD}",
+        "ECX_LAN_HOST": "${DEVICE_DOMAIN_NAME}"
+      },
+      "volumes": [
+        "${APP_DATA_DIR}/data/chain:/node:ro",
+        "${APP_DATA_DIR}/data/settings:/settings",
+        "${APP_DATA_DIR}/data/pool:/pool:ro"
+      ]
+    }
+  }
+}

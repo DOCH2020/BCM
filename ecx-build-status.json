@@ -1,14 +1,14 @@
 {
   "app_id": "bcm-ecx",
-  "updated_date": "2026-11-04",
+  "updated_date": "2026-11-05",
   "version": "0.1.0-beta.1",
-  "status": "private-build-tested-not-installable",
+  "status": "published-amd64-beta-untested-on-umbrel",
   "architecture": "linux/amd64",
   "oci_manifest_digest": "sha256:981d980179ffa5dcdce0f5c1c6cf0cf9e3bfa75b4d1778cdc67a85653a5c98a7",
   "archive_sha256": "72a140b64a71b0c6fe72351eacda6d6c95a8243af21de4b21556d1ebfaa37c7d",
   "archive_bytes": 98810880,
-  "public_image_reference": null,
-  "published": false,
+  "public_image_reference": "ghcr.io/doch2020/bcm-ecx:0.1.0-beta.1@sha256:d0e90d52461642cf68afecfecc01809085945881b4670de759ed1009070c8e1b",
+  "published": true,
   "tests": {
     "pool_unit_suites_passed": true,
     "in_image_checks_passed": 9,
@@ -25,12 +25,12 @@
     "Finish portable owner-facing private-interface selection",
     "Verify actual Umbrel authentication, install, restart, update and data relocation on separate storage",
     "Verify actual ASIC acceptance in the independent app installation",
-    "Publish reviewed public version-tagged digest-pinned images",
     "Build and test ARM64 before any ARM support claim",
     "Run official package and image checks against the release candidate"
   ],
   "coffee_donations_included": true,
   "release_channel": "beta",
   "release_title": "BCM ECX Node (Beta) \u2014 0.1.0-beta.1",
-  "prerelease": true
+  "prerelease": true,
+  "registry_manifest_digest": "sha256:d0e90d52461642cf68afecfecc01809085945881b4670de759ed1009070c8e1b"
 }

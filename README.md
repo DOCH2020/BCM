@@ -2,75 +2,43 @@
 
 Community applications from Bluefields Cryptocurrency Mining for Umbrel.
 
-**Status: private AMD64 app build tested. No installable apps in the store yet.**
+## BCM ECX Node (Beta) — 0.1.0-beta.1
 
-The first planned app is **BCM ECX Node (Beta)**: a local ECX full node, mining
-enforcer, SOLO Stratum service and BCM dashboard. ECX is distinct from XEC
-and Bitcoin BTC. The intended interface is English with light/dark themes.
+The Linux AMD64 beta is listed in this community store with the gold 3D ECX icon.
+It includes an unpruned ECX node, repaired enforcer, zero-fee SOLO Stratum V1
+pool and BCM dashboard, with light/dark themes and owner-specific first-run setup.
+ECX is separate from BTC and XEC. PPLNS and ARM64 are not included.
 
-## Adding the store
+Add this community store in Umbrel's App Store settings:
 
-Open the Umbrel App Store, find its Community App Stores setting and add:
+https://github.com/DOCH2020/BCM
 
-**https://github.com/DOCH2020/BCM**
+Select BCM ECX Node (Beta). Each installer supplies their own ECX receiving
+address and uses the setup password shown by Umbrel. No private key is required.
+Mining waits for synchronized, verified chain and current templates.
 
-UI labels can differ between Umbrel versions. The store currently has no
-installable applications; BCM ECX Node is still a draft.
+Use a separate Linux AMD64 Umbrel with 16 GB RAM; a 2 TB SSD is recommended.
+The unpruned chain requires substantial free storage (at least 950 GB at the
+prepared preflight baseline). Ports 3334/3335 must be unused. These Stratum
+ports are published on host interfaces; control remote access with your network
+firewall. No router forwarding is configured. Administrative RPC remains private.
 
-An app will appear only after its installable manifest and public runtime
-images pass the release checks. The draft below is intentionally outside
-the app catalog, so Umbrel cannot offer an incomplete installation.
+## Beta testing status
 
-**Release label: BCM ECX Node (Beta) — 0.1.0-beta.1.** See [beta release notes](BETA-RELEASE.md).
+The runtime image is publicly pullable and pinned by digest. Private image
+audits, source checks and isolated setup/browser tests passed. A real Umbrel
+fresh install, authentication, restart, upgrade, relocation and ASIC acceptance
+still need independent testing. This is an untested Umbrel beta, not an official
+Umbrel endorsement or a claim of production readiness. See TEST-RESULTS.md.
 
-## ECX development update â€” November 4, 2026
+The owner approved public image publication on November 5, 2026. Upstream
+enforcer redistribution clearance remains unconfirmed; publication approval
+does not establish a third-party license grant. Component notices are retained.
 
-The private Linux AMD64 image is built and audited. Pool unit suites and nine
-in-image checks passed. Browser setup, per-install receiving-address validation,
-owner isolation, persistent settings, and retained pool/worker best shares have
-isolated test coverage. The app is SOLO only with a zero pool fee.
+The only bundled addresses are optional public donation addresses for display;
+they never replace the installer's mining payout. No wallet material, personal
+installation settings, miner endpoints, chain or ledger is bundled.
 
-The rebuilt private image includes an optional “Invite me to a coffee” section
-with owner-approved ECX/BTC donation addresses and tested copy buttons. Support
-is voluntary; donation addresses never replace an installer's mining payout.
-
-Twelve local setup/package tests and three destination-preflight regression
-groups pass. The destination check requires adequate RAM and free storage,
-the selected private LAN address, and unused app/Stratum ports. This is a
-developer test gate; the owner-facing LAN selection flow is still unfinished.
-
-These results do not establish Umbrel installation or upgrade compatibility.
-The image is private and has not been published or installed through this
-store. Enforcer redistribution clearance, a separate real Umbrel install/update
-test, public images, and ARM64 build/test coverage remain release requirements.
-See [ECX-RELEASE.md](ECX-RELEASE.md) for the remaining gates and
-[ecx-build-status.json](ecx-build-status.json) for the recorded build identity.
-
-## Repository layout
-
-```text
-umbrel-app-store.yml           Store identity: bcm / BCM
-ecx-draft.json     Planned app metadata; not an install manifest
-ecx-build-status.json   Private build identity and bounded test status
-ECX-RELEASE.md       Requirements before listing the app
-ecx-icon.png        Existing BCM 3D ECX artwork
-check_store.py           Local metadata and privacy checks
-```
-
-When ready, a top-level `bcm-ecx/` directory will contain `umbrel-app.yml`,
-`docker-compose.yml` and persistent data directory placeholders. The app ID
-starts with this store's `bcm` prefix. The draft does not claim an official
-Umbrel endorsement or a completed installation test.
-
-The store does not include a blockchain, personal payout address, miner
-endpoints, API credentials, wallet backup or private key. Each owner must
-configure their own ECX receiving address during first-run setup.
-
-## Development
-
-Run `python check_store.py` from this store directory. This checks the
-store foundation; it is not a substitute for Umbrel installation testing.
-The current running OptiPlex containers are separate and remain unchanged.
-
-Packaging conventions follow the official community-store template:
-https://github.com/getumbrel/umbrel-community-app-store
+Run `python3 check_store.py` for static metadata checks. These do not certify
+installation. Removing the `bcm-ecx/` catalog entry rolls back listing without
+deleting an installed user's data. Preserve app ID and data on upgrades.

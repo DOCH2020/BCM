@@ -1,0 +1,30 @@
+{
+  "manifestVersion": 2,
+  "id": "bcm-ecx",
+  "storage": {
+    "dataRoot": "data"
+  },
+  "category": "Finance",
+  "name": "BCM ECX Node (Beta)",
+  "version": "0.1.0-beta.1",
+  "tagline": "Your ECX node and local SOLO pool",
+  "description": "BETA \u2014 Linux AMD64 only. Run an unpruned ECX full node, enforcer, zero-fee SOLO pool and BCM dashboard. Requires 16 GB RAM; 2 TB SSD recommended. Enter your own ECX receiving address with the app password shown by Umbrel. Mining waits for chain synchronization and verified current templates. ECX is separate from BTC and XEC. Published community-store beta; independent Umbrel lifecycle testing is pending. Stratum V1 ports 3334/3335 are published on host interfaces; control remote access with your network firewall. No router forwarding is configured.",
+  "releaseNotes": "Initial AMD64 beta for independent testing. Real Umbrel installation, restart, upgrade, storage relocation and ASIC acceptance are not yet verified.",
+  "developer": "Bluefields Cryptocurrency Mining",
+  "website": "https://github.com/DOCH2020/BCM",
+  "dependencies": [],
+  "repo": "https://github.com/DOCH2020/BCM",
+  "support": "https://github.com/DOCH2020/BCM/issues",
+  "port": 8088,
+  "icon": "https://raw.githubusercontent.com/DOCH2020/BCM/main/ecx-icon.png",
+  "gallery": [],
+  "path": "",
+  "defaultUsername": "",
+  "defaultPassword": "",
+  "deterministicPassword": true,
+  "submitter": "DOCH2020",
+  "backupIgnore": [
+    "data/chain/blocks/*",
+    "data/chain/chainstate/*"
+  ]
+}

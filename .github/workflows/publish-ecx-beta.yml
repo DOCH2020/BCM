@@ -1,0 +1,29 @@
+name: Publish audited ECX beta image
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  packages: write
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Fetch and verify audited beta archive
+        run: |
+          curl --fail --location --retry 3 --output candidate.oci.tar https://bcmpool.online/bcm-ecx-0.1.0-beta.1-amd64.oci.tar
+          echo '72a140b64a71b0c6fe72351eacda6d6c95a8243af21de4b21556d1ebfaa37c7d  candidate.oci.tar' | sha256sum --check
+      - name: Import and publish with repository metadata
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_ACTOR: ${{ github.actor }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends skopeo
+          skopeo copy oci-archive:candidate.oci.tar docker-daemon:bcm-ecx-audited:0.1.0-beta.1
+          printf '%s' "$GH_TOKEN" | docker login ghcr.io --username "$GH_ACTOR" --password-stdin
+          printf '%s\n' 'FROM bcm-ecx-audited:0.1.0-beta.1' 'LABEL org.opencontainers.image.source="https://github.com/DOCH2020/BCM" org.opencontainers.image.title="BCM ECX Node (Beta)" org.opencontainers.image.version="0.1.0-beta.1"' > Dockerfile
+          docker build --network=none --tag ghcr.io/doch2020/bcm-ecx:0.1.0-beta.1 .
+          docker push ghcr.io/doch2020/bcm-ecx:0.1.0-beta.1
+          docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/doch2020/bcm-ecx:0.1.0-beta.1 | tee image-reference.txt
+          cat image-reference.txt >> "$GITHUB_STEP_SUMMARY"
