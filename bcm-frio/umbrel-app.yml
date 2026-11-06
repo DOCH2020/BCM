@@ -1,0 +1,30 @@
+{
+  "manifestVersion": 2,
+  "id": "bcm-frio",
+  "storage": {
+    "dataRoot": "data"
+  },
+  "category": "Finance",
+  "name": "BCM FRIO Node (Beta)",
+  "version": "0.1.0-beta.1",
+  "tagline": "Your FRIO node and zero-fee SOLO pool",
+  "description": "BETA \u2014 Linux AMD64. FRIO node with selectable pruning or full block archive, zero-fee SOLO pool, silver BCM dashboard and 3D FRIO icon. Includes all ECX-style panels and the matching Block Smasher animation. Native Umbrel install/upgrade/storage relocation and real ASIC acceptance are being tested. Stratum 3370/4370; no router forwarding is configured.",
+  "releaseNotes": "Initial beta candidate for store installation testing. Choose pruned storage (minimum 550 MiB) or unpruned before the node starts. Existing fixed-prune installations retain 2048 MiB on upgrade.",
+  "developer": "Bluefields Cryptocurrency Mining",
+  "website": "https://github.com/DOCH2020/BCM",
+  "dependencies": [],
+  "repo": "https://github.com/DOCH2020/BCM",
+  "support": "https://github.com/DOCH2020/BCM/issues",
+  "port": 8089,
+  "icon": "https://raw.githubusercontent.com/DOCH2020/BCM/main/frio-icon.png",
+  "gallery": [],
+  "path": "",
+  "defaultUsername": "",
+  "defaultPassword": "",
+  "deterministicPassword": true,
+  "submitter": "DOCH2020",
+  "backupIgnore": [
+    "data/chain/blocks/*",
+    "data/chain/chainstate/*"
+  ]
+}

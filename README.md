@@ -42,3 +42,24 @@ installation settings, miner endpoints, chain or ledger is bundled.
 Run `python3 check_store.py` for static metadata checks. These do not certify
 installation. Removing the `bcm-ecx/` catalog entry rolls back listing without
 deleting an installed user's data. Preserve app ID and data on upgrades.
+
+## BCM FRIO Node (Beta) — 0.1.0-beta.1
+
+The Linux AMD64 FRIO beta is now listed with its 3D FRIO app icon, silver dashboard,
+0% pool-fee SOLO engine, and selectable pruned or unpruned blockchain storage.
+It uses the same panel layout and Block Smasher animation as BCM ECX.
+
+On first launch, use the Umbrel app password to choose storage (default 2,048 MiB
+retained block-file target; minimum 550 MiB, or an unpruned archive), then enter
+your own FRIO receiving address. Changes to a running node apply on the next app
+restart. Initial sync still downloads and validates the chain; total app storage
+is larger than the prune target. An already-pruned archive is never erased or
+reindexed automatically by the settings screen.
+
+The registry image is pinned by digest and its manifest and layers are anonymously
+pullable. Private image tests, authenticated setup/storage tests, browser checks,
+and a pruned-node zero-fee block test passed. Native Umbrel lifecycle and real ASIC
+acceptance remain beta testing tasks. See [FRIO beta notes](bcm-frio/README.md).
+
+Ports 3370/4370 must be unused. Administrative RPC is private; no router forwarding
+is configured. ECX app files and installed data are unchanged by this listing.
