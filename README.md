@@ -16,7 +16,7 @@ Both apps include three nodes, independent pruning controls, automatic peer assi
 | BCM FRIO Node (Beta) | 0.1.0-beta.7 |
 | BCM BCH Node (Beta) | 0.1.0-beta.3 |
 | BCM Tarcoin Node (Beta) | 0.1.0-beta.2 |
-| BCM ECX Node (Beta) | 0.1.0-beta.2 |
+| BCM ECX Node (Beta) | 0.1.0-beta.3 |
 | BCM BTC1 Purity Node (Beta) | 0.1.0-beta.3 |
 
 All five apps include automatic chain-specific peer discovery, persistent peer settings and measured sync progress. Open Node status → Sync peer settings after updating. Existing data mounts and pool fee policies are preserved. Images are published for Linux AMD64; native lifecycle acceptance remains pending. See each app directory for current notes.
