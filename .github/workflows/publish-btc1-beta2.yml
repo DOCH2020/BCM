@@ -1,0 +1,40 @@
+name: Publish audited BTC1 Purity beta.2 image
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/publish-btc1-beta2.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  packages: write
+concurrency:
+  group: publish-btc1-beta-2
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Fetch and verify audited pruning-enabled beta
+        run: |
+          curl --fail --location --retry 3 --output candidate.oci.tar https://bcmpool.online/bcm-btc1-0.1.0-beta.2-amd64.oci.tar
+          echo 'c28a441879f80b65c6e0c30cc8226c954b917937e7c4e4083f0233fee21ca1c2  candidate.oci.tar' | sha256sum --check
+      - name: Publish the verified image
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_ACTOR: ${{ github.actor }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends skopeo
+          skopeo copy oci-archive:candidate.oci.tar docker-daemon:bcm-btc1-audited:0.1.0-beta.2
+          printf '%s' "$GH_TOKEN" | docker login ghcr.io --username "$GH_ACTOR" --password-stdin
+          if docker manifest inspect ghcr.io/doch2020/bcm-btc1:0.1.0-beta.2 >/dev/null 2>&1; then
+            echo 'The beta tag already exists; refusing to overwrite it.'
+            exit 1
+          fi
+          printf '%s\n' 'FROM bcm-btc1-audited:0.1.0-beta.2' 'LABEL org.opencontainers.image.source="https://github.com/DOCH2020/BCM" org.opencontainers.image.title="BCM BTC1 Purity Node (Beta)" org.opencontainers.image.version="0.1.0-beta.2"' > Dockerfile
+          docker build --network=none --tag ghcr.io/doch2020/bcm-btc1:0.1.0-beta.2 .
+          docker push ghcr.io/doch2020/bcm-btc1:0.1.0-beta.2
+          docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/doch2020/bcm-btc1:0.1.0-beta.2 | tee image-reference.txt
+          cat image-reference.txt >> "$GITHUB_STEP_SUMMARY"
+
