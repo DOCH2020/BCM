@@ -1,4 +1,4 @@
-# BCM FRIO Node (Beta) — 0.1.0-beta.5
+# BCM FRIO Node (Beta) — 0.1.0-beta.6
 
 Install through the BCM community store after publication. This beta is for Linux AMD64 and owner-run installation testing. It is not an official Umbrel endorsement or a claim of production readiness.
 
@@ -19,3 +19,5 @@ Beta.3 removes the minimum-difficulty dropdown and uses a fixed display-only1M t
 Beta.4 also applies the 1M display threshold to peak-chart bars and tooltips, including keyboard navigation. Both chart scales begin at 1M. Share totals remain unchanged.
 
 Beta.5 adds optional read-only miner telemetry. In Node status > Worker latency settings, enter this pool LAN IP/hostname plus each miner LAN IPv4 address and firmware (harlo or axeos), then save using the Umbrel app password. Settings stay in app data, not the public image. Reads active-pool latency every 10 seconds, expires samples after 30 seconds, and excludes disconnected, other-pool, invalid, or ambiguous worker readings. No miner settings are written. Remote miners require a reachable supported telemetry source.
+
+Beta.6 fixes Block Smasher reset: it measures accepted proofs since the last confirmed pool block instead of a rolling 15-minute best. It resets when the block is first verified by this app, persists that boundary across restarts, and retains all historical records and totals. Existing installations start a fresh Smasher cycle on the first verification of their latest confirmed pool block after updating.
