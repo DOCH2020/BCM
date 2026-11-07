@@ -7,7 +7,7 @@
       }
     },
     "node": {
-      "image": "ghcr.io/doch2020/bcm-frio:0.1.0-beta.3@sha256:d0b664a4d3d984c5070bd505a155cdaf237c46792ed1ab3429af71cbf4f13aeb",
+      "image": "ghcr.io/doch2020/bcm-frio:0.1.0-beta.4@sha256:8d0458b51f0a7b31b25cebf412bce764dee863aaf2ceb9de3e23d837513f44d9",
       "platform": "linux/amd64",
       "user": "1000:1000",
       "init": true,
@@ -58,7 +58,7 @@
       }
     },
     "pool": {
-      "image": "ghcr.io/doch2020/bcm-frio:0.1.0-beta.3@sha256:d0b664a4d3d984c5070bd505a155cdaf237c46792ed1ab3429af71cbf4f13aeb",
+      "image": "ghcr.io/doch2020/bcm-frio:0.1.0-beta.4@sha256:8d0458b51f0a7b31b25cebf412bce764dee863aaf2ceb9de3e23d837513f44d9",
       "platform": "linux/amd64",
       "user": "1000:1000",
       "init": true,
@@ -97,7 +97,7 @@
       ]
     },
     "dashboard": {
-      "image": "ghcr.io/doch2020/bcm-frio:0.1.0-beta.3@sha256:d0b664a4d3d984c5070bd505a155cdaf237c46792ed1ab3429af71cbf4f13aeb",
+      "image": "ghcr.io/doch2020/bcm-frio:0.1.0-beta.4@sha256:8d0458b51f0a7b31b25cebf412bce764dee863aaf2ceb9de3e23d837513f44d9",
       "platform": "linux/amd64",
       "user": "1000:1000",
       "init": true,

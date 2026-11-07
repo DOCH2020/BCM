@@ -1,4 +1,4 @@
-# BCM FRIO Node (Beta) — 0.1.0-beta.3
+# BCM FRIO Node (Beta) — 0.1.0-beta.4
 
 Install through the BCM community store after publication. This beta is for Linux AMD64 and owner-run installation testing. It is not an official Umbrel endorsement or a claim of production readiness.
 
@@ -15,3 +15,5 @@ Private unit, HTTP setup, prune-mode block, persistent-state and browser tests h
 Beta.2 fixes long decimal difficulty values in peak-chart tooltips. All visible proof values use compact suffixes (k/M/G/T/P/E); full numeric precision is retained in telemetry. Near-unit rounding promotes1000k to1M. Existing chain, settings and pool data are preserved during the normal app update.
 
 Beta.3 removes the minimum-difficulty dropdown and uses a fixed display-only1M threshold for the live log. All panel outlines match the green sampled from the3D FRIO coin. Compact tooltip fixes are included. Share totals, assigned mining difficulty, payouts and node settings are unchanged.
+
+Beta.4 also applies the 1M display threshold to peak-chart bars and tooltips, including keyboard navigation. Both chart scales begin at 1M. Share totals remain unchanged.
