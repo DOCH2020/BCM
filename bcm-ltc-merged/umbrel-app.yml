@@ -1,0 +1,26 @@
+{
+  "manifestVersion": 2,
+  "id": "bcm-ltc-merged",
+  "storage": {
+    "dataRoot": "data"
+  },
+  "category": "Finance",
+  "name": "BCM LTC + DOGE + SOQ (Beta)",
+  "version": "0.1.0-beta.1",
+  "tagline": "Three coins, one Scrypt miner, zero pool fee",
+  "description": "Self-contained LTC parent, Dogecoin and Soqucoin nodes with selectable pruning, a wallet-free 0% SOLO merged pool, full BCM chain dashboards and automatic peer discovery. Linux AMD64 beta; destination lifecycle testing remains pending.",
+  "developer": "Bluefields Cryptocurrency Mining",
+  "website": "https://github.com/DOCH2020/BCM",
+  "dependencies": [],
+  "repo": "https://github.com/DOCH2020/BCM",
+  "support": "https://github.com/DOCH2020/BCM/issues",
+  "port": 8093,
+  "icon": "https://raw.githubusercontent.com/DOCH2020/BCM/main/bcm-ltc-merged-icon.svg",
+  "gallery": [],
+  "path": "",
+  "defaultUsername": "",
+  "defaultPassword": "",
+  "deterministicPassword": true,
+  "submitter": "DOCH2020",
+  "releaseNotes": "First 0% SOLO triple-merged beta. Includes three wallet-free nodes, independent pruning controls, automatic chain-specific peer assistance and BCM dashboards. Both parent combinations passed private-network merged-block and real Stratum tests, including pruned nodes; each image passed 11 embedded tests. Native Umbrel lifecycle and real ASIC/mainnet acceptance remain pending. Linux AMD64 only."
+}

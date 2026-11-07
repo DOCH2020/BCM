@@ -1,0 +1,219 @@
+{
+  "services": {
+    "app_proxy": {
+      "environment": {
+        "APP_HOST": "bcm-ltc-merged_node_1",
+        "APP_PORT": "8093"
+      }
+    },
+    "node": {
+      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.1@sha256:9891fdcff09960a7a77c148f689c200a3fc3814a6e94d92b66de79691b0d340c",
+      "platform": "linux/amd64",
+      "user": "1000:1000",
+      "init": true,
+      "restart": "on-failure",
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "tmpfs": [
+        "/tmp:rw,size=64m,mode=1777"
+      ],
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      },
+      "command": [
+        "node",
+        "ltc"
+      ],
+      "mem_limit": "2g",
+      "cpus": 2,
+      "stop_grace_period": "180s",
+      "volumes": [
+        "${APP_DATA_DIR}/data/ltc:/nodes/ltc",
+        "${APP_DATA_DIR}/data/settings:/settings:ro"
+      ],
+      "ports": [
+        "3400:3400/tcp",
+        "4400:4400/tcp"
+      ]
+    },
+    "doge": {
+      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.1@sha256:9891fdcff09960a7a77c148f689c200a3fc3814a6e94d92b66de79691b0d340c",
+      "platform": "linux/amd64",
+      "user": "1000:1000",
+      "init": true,
+      "restart": "on-failure",
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "tmpfs": [
+        "/tmp:rw,size=64m,mode=1777"
+      ],
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      },
+      "command": [
+        "node",
+        "doge"
+      ],
+      "mem_limit": "1536m",
+      "cpus": 1,
+      "stop_grace_period": "180s",
+      "volumes": [
+        "${APP_DATA_DIR}/data/doge:/nodes/doge",
+        "${APP_DATA_DIR}/data/settings:/settings:ro"
+      ],
+      "network_mode": "service:node",
+      "depends_on": [
+        "node"
+      ]
+    },
+    "soq": {
+      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.1@sha256:9891fdcff09960a7a77c148f689c200a3fc3814a6e94d92b66de79691b0d340c",
+      "platform": "linux/amd64",
+      "user": "1000:1000",
+      "init": true,
+      "restart": "on-failure",
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "tmpfs": [
+        "/tmp:rw,size=64m,mode=1777"
+      ],
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      },
+      "command": [
+        "node",
+        "soq"
+      ],
+      "mem_limit": "1g",
+      "cpus": 1,
+      "stop_grace_period": "180s",
+      "volumes": [
+        "${APP_DATA_DIR}/data/soq:/nodes/soq",
+        "${APP_DATA_DIR}/data/settings:/settings:ro"
+      ],
+      "network_mode": "service:node",
+      "depends_on": [
+        "node"
+      ]
+    },
+    "pool": {
+      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.1@sha256:9891fdcff09960a7a77c148f689c200a3fc3814a6e94d92b66de79691b0d340c",
+      "platform": "linux/amd64",
+      "user": "1000:1000",
+      "init": true,
+      "restart": "on-failure",
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "tmpfs": [
+        "/tmp:rw,size=64m,mode=1777"
+      ],
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      },
+      "command": [
+        "pool"
+      ],
+      "mem_limit": "512m",
+      "cpus": 1,
+      "stop_grace_period": "60s",
+      "network_mode": "service:node",
+      "depends_on": [
+        "node",
+        "doge",
+        "soq"
+      ],
+      "volumes": [
+        "${APP_DATA_DIR}/data/ltc:/nodes/ltc:ro",
+        "${APP_DATA_DIR}/data/doge:/nodes/doge:ro",
+        "${APP_DATA_DIR}/data/soq:/nodes/soq:ro",
+        "${APP_DATA_DIR}/data/settings:/settings:ro",
+        "${APP_DATA_DIR}/data/pool:/pool",
+        "${APP_DATA_DIR}/data/telemetry:/telemetry"
+      ]
+    },
+    "dashboard": {
+      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.1@sha256:9891fdcff09960a7a77c148f689c200a3fc3814a6e94d92b66de79691b0d340c",
+      "platform": "linux/amd64",
+      "user": "1000:1000",
+      "init": true,
+      "restart": "on-failure",
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "tmpfs": [
+        "/tmp:rw,size=64m,mode=1777"
+      ],
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      },
+      "command": [
+        "dashboard"
+      ],
+      "mem_limit": "384m",
+      "cpus": 1,
+      "stop_grace_period": "60s",
+      "network_mode": "service:node",
+      "depends_on": [
+        "node",
+        "doge",
+        "soq"
+      ],
+      "volumes": [
+        "${APP_DATA_DIR}/data/ltc:/nodes/ltc:ro",
+        "${APP_DATA_DIR}/data/doge:/nodes/doge:ro",
+        "${APP_DATA_DIR}/data/soq:/nodes/soq:ro",
+        "${APP_DATA_DIR}/data/settings:/settings",
+        "${APP_DATA_DIR}/data/pool:/pool:ro",
+        "${APP_DATA_DIR}/data/telemetry:/telemetry"
+      ],
+      "environment": {
+        "BCM_SETUP_PASSWORD": "${APP_PASSWORD}",
+        "FRIO_LAN_HOST": "${DEVICE_DOMAIN_NAME}"
+      }
+    }
+  }
+}

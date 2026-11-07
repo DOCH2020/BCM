@@ -1,5 +1,14 @@
 # BCM App Store
 
+## New triple-merged SOLO apps
+
+| App | Version | ASIC / rentals | Dashboard |
+| --- | --- | --- | --- |
+| LTC + DOGE + SOQ | 0.1.0-beta.1 | 3400 / 4400 | 8093 |
+| DGB Scrypt + DOGE + SOQ | 0.1.0-beta.1 | 3401 / 4401 | 8094 |
+
+Both apps include three nodes, independent pruning controls, automatic peer assistance and BCM dashboards with **0% SOLO** direct coinbase rewards. Linux AMD64 beta. Private-network mining and pruned Stratum tests passed; native Umbrel lifecycle and real ASIC/mainnet acceptance remain pending. See each app's README for receiving-address requirements and setup. Existing installed apps are not modified.
+
 ## Current sync-assistance updates
 
 | App | Version |
@@ -103,3 +112,4 @@ Both images passed17 tests and isolated two-node pruned mining/block-acceptance 
 **BCM BTC1 Purity Node (Beta)**, version **0.1.0-beta.1**, is available for Linux AMD64. It uses the verified official Purity1.1.2 release, a selectable pruned/full node, a0% direct-coinbase SOLO pool, and the BCM dashboard with3D coin artwork. Dashboard8092; standard/high Stratum3390/4390. Purity activation checkpoint961637 is required before mining; initial-sync metrics stay visible before activation. Wallet and embedded DATUM are disabled. Native lifecycle and actual hardware sync/miner acceptance remain beta checks. The image passed18 tests and independent two-node pruned block acceptance. Sync one substantial node at a time; pruning does not remove initial download/validation or cap total disk use.
 
 BCH beta.2 also fixes unavailable initial-sync telemetry before its BCH fork checkpoint. Existing data and mining gates are preserved during a normal update.
+
