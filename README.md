@@ -43,7 +43,7 @@ Run `python3 check_store.py` for static metadata checks. These do not certify
 installation. Removing the `bcm-ecx/` catalog entry rolls back listing without
 deleting an installed user's data. Preserve app ID and data on upgrades.
 
-## BCM FRIO Node (Beta) — 0.1.0-beta.1
+## BCM FRIO Node (Beta) — 0.1.0-beta.3
 
 The Linux AMD64 FRIO beta is now listed with its 3D FRIO app icon, silver dashboard,
 0% pool-fee SOLO engine, and selectable pruned or unpruned blockchain storage.
@@ -63,3 +63,10 @@ acceptance remain beta testing tasks. See [FRIO beta notes](bcm-frio/README.md).
 
 Ports 3370/4370 must be unused. Administrative RPC is private; no router forwarding
 is configured. ECX app files and installed data are unchanged by this listing.
+
+
+Beta.3 removes the live-log minimum-difficulty dropdown: only proof values of 1M
+or higher appear in that log, while totals still include all shares. Panel outlines
+now match the green in the 3D FRIO coin, and peak tooltips use compact suffixes.
+These are display changes; mining difficulty, payout rules and app-data paths
+are unchanged. Update the existing app through Umbrel; do not reinstall it.
