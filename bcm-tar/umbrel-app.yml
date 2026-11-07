@@ -1,0 +1,30 @@
+{
+  "manifestVersion": 2,
+  "id": "bcm-tar",
+  "storage": {
+    "dataRoot": "data"
+  },
+  "category": "Finance",
+  "name": "BCM Tarcoin Node (Beta)",
+  "version": "0.1.0-beta.1",
+  "tagline": "Your TAR node and zero-fee SOLO pool",
+  "description": "Tarcoin 1.2.6 with selectable pruning, a 0% SOLO pool, 3D coin icon and BCM dashboard. Linux AMD64 beta. Includes worker latency settings, round timer, pool effort and Block Smasher reset. Native install, initial sync, real ASIC acceptance and lifecycle testing remain beta checks.",
+  "releaseNotes": "Initial public beta: 0% direct-coinbase SOLO mining; owner-selected pruning or full block archive; private node RPC; per-worker read-only miner telemetry; 1M log/chart display filters; Block Smasher reset after confirmed pool blocks. Orange panel outlines. Passed 17 image tests and two-node pruned mining tests. Native destination testing remains pending.",
+  "developer": "Bluefields Cryptocurrency Mining",
+  "website": "https://github.com/DOCH2020/BCM",
+  "dependencies": [],
+  "repo": "https://github.com/DOCH2020/BCM",
+  "support": "https://github.com/DOCH2020/BCM/issues",
+  "port": 8091,
+  "icon": "https://raw.githubusercontent.com/DOCH2020/BCM/main/tar-icon.png",
+  "gallery": [],
+  "path": "",
+  "defaultUsername": "",
+  "defaultPassword": "",
+  "deterministicPassword": true,
+  "submitter": "DOCH2020",
+  "backupIgnore": [
+    "data/chain/blocks/*",
+    "data/chain/chainstate/*"
+  ]
+}

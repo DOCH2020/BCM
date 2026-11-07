@@ -70,3 +70,12 @@ or higher appear in that log, while totals still include all shares. Panel outli
 now match the green in the 3D FRIO coin, and peak tooltips use compact suffixes.
 These are display changes; mining difficulty, payout rules and app-data paths
 are unchanged. Update the existing app through Umbrel; do not reinstall it.
+
+
+## BCH and Tarcoin Umbrel betas
+
+The BCM community store now includes **BCM BCH Node (Beta)** and **BCM Tarcoin Node (Beta)**, version **0.1.0-beta.1**, for Linux AMD64. Each provides selectable pruning, owner receiving-address setup, a zero-fee SOLO pool and the BCM dashboard with its own 3D coin. BCH panel outlines are dark green; Tarcoin outlines are orange.
+
+BCH uses dashboard port8090 and Stratum3360/4360. Tarcoin uses dashboard8091 and Stratum3380/4380. These avoid the ECX and FRIO app ports. Pruned mode defaults to2048MiB retained block files (minimum550MiB), with an unpruned choice before first start. Pruning still requires initial download and validation.
+
+Both images passed17 tests and isolated two-node pruned mining/block-acceptance checks. Native installation, destination initial sync, real ASIC/rental acceptance and lifecycle tests remain beta checks. Tarcoin's official1.2.6 package reports internal daemon version1.0.0; this discrepancy is recorded. Install/sync one new app at a time. Existing ECX/FRIO installations are unchanged.
