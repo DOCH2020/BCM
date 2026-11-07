@@ -1,0 +1,30 @@
+{
+  "manifestVersion": 2,
+  "id": "bcm-btc1",
+  "storage": {
+    "dataRoot": "data"
+  },
+  "category": "Finance",
+  "name": "BCM BTC1 Purity Node (Beta)",
+  "version": "0.1.0-beta.1",
+  "tagline": "Your BTC1 node and zero-fee SOLO pool",
+  "description": "Bitcoin Purity1.1.2 node with selectable pruning and a 0% direct-coinbase SOLO pool. Linux AMD64 beta with BCM dashboard, 3D coin, round timer, effort, worker latency settings and confirmed-block Smasher reset. Mining requires Purity activation identity and a fully synchronized fresh template. Native destination lifecycle testing remains pending.",
+  "releaseNotes": "Initial public beta. Purity1.1.2, owner-selected pruning or unpruned storage, 0% SOLO fee, private RPC, managed-service startup, and visible initial-sync metrics before Purity checkpoint961637. Passed18 image tests and two-node pruned block-acceptance tests. Does not change existing VPS nodes or installed apps.",
+  "developer": "Bluefields Cryptocurrency Mining",
+  "website": "https://github.com/DOCH2020/BCM",
+  "dependencies": [],
+  "repo": "https://github.com/DOCH2020/BCM",
+  "support": "https://github.com/DOCH2020/BCM/issues",
+  "port": 8092,
+  "icon": "https://raw.githubusercontent.com/DOCH2020/BCM/main/btc1-icon.png",
+  "gallery": [],
+  "path": "",
+  "defaultUsername": "",
+  "defaultPassword": "",
+  "deterministicPassword": true,
+  "submitter": "DOCH2020",
+  "backupIgnore": [
+    "data/chain/blocks/*",
+    "data/chain/chainstate/*"
+  ]
+}

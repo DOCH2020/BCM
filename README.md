@@ -79,3 +79,10 @@ The BCM community store now includes **BCM BCH Node (Beta)** and **BCM Tarcoin N
 BCH uses dashboard port8090 and Stratum3360/4360. Tarcoin uses dashboard8091 and Stratum3380/4380. These avoid the ECX and FRIO app ports. Pruned mode defaults to2048MiB retained block files (minimum550MiB), with an unpruned choice before first start. Pruning still requires initial download and validation.
 
 Both images passed17 tests and isolated two-node pruned mining/block-acceptance checks. Native installation, destination initial sync, real ASIC/rental acceptance and lifecycle tests remain beta checks. Tarcoin's official1.2.6 package reports internal daemon version1.0.0; this discrepancy is recorded. Install/sync one new app at a time. Existing ECX/FRIO installations are unchanged.
+
+
+## BTC1 Bitcoin Purity beta
+
+**BCM BTC1 Purity Node (Beta)**, version **0.1.0-beta.1**, is available for Linux AMD64. It uses the verified official Purity1.1.2 release, a selectable pruned/full node, a0% direct-coinbase SOLO pool, and the BCM dashboard with3D coin artwork. Dashboard8092; standard/high Stratum3390/4390. Purity activation checkpoint961637 is required before mining; initial-sync metrics stay visible before activation. Wallet and embedded DATUM are disabled. Native lifecycle and actual hardware sync/miner acceptance remain beta checks. The image passed18 tests and independent two-node pruned block acceptance. Sync one substantial node at a time; pruning does not remove initial download/validation or cap total disk use.
+
+BCH beta.2 also fixes unavailable initial-sync telemetry before its BCH fork checkpoint. Existing data and mining gates are preserved during a normal update.
