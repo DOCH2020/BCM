@@ -1,17 +1,15 @@
-# BCM BTC1 Purity Node (Beta) — 0.1.0-beta.2
+# BCM BTC1 Purity Node (Beta) — 0.1.0-beta.3
 
-Bitcoin Purity 1.1.2 node, selectable pruning, zero-fee SOLO pool and BCM dashboard. AMD64 beta.
+The existing node, 0% SOLO pool and BCM dashboard now include automatic initial-sync peer assistance. Node binaries, mining policy, ports and data mounts are unchanged by this update.
 
-## Sync peers
+Open **Node status → Sync peer settings**. Assistance uses Purity shared pre-fork history, with its upstream seed list and P2P port 8333. Normal discovery continues. At most four automatic helper addresses are tried, within a total cap of seven including your optional addresses. Failed or idle automatic helpers are periodically replaced. Only public IPv4 endpoints are accepted.
 
-Open the app, expand **Node status**, then select **Sync peer settings**. Historical assistance defaults to enabled with seven public archive candidates. You can disable it or save up to seven public IPv4 endpoints using your Umbrel app password. Changes apply within 20 seconds and the settings file persists in the existing settings volume across restarts and upgrades.
+Use the Umbrel app password to save preferences. Settings survive restarts and upgrades, apply within 20 seconds, and can disable automatic discovery or all assistance. Turning assistance off removes retry hints without dropping existing connections. Connected peers and peers downloading blocks are shown separately. The displayed blocks/second value is a measured recent sample, not a completion forecast. More peers do not guarantee faster sync.
 
-The helper retries archive peers only while downloading shared pre-fork history. It removes its retry hints when height 961631 is reached, initial download ends, or assistance is disabled. Existing connections may remain connected normally. Ordinary peer discovery continues. Peer availability and download speed vary; the address list is not a guarantee of service or a source of chain trust. Purity's consensus and activation identity checks remain authoritative.
+The helper is limited to initial block download and checks expected chain identity. Generic Bitcoin archive assistance stops at height 961631, before Purity divergence. All consensus validation and mining readiness gates remain enabled.
 
-## Update
+## Updating
 
-Use Umbrel's normal app update. Do not uninstall to update. Existing chain, storage settings, payout and pool data mounts are unchanged; the daemon resumes its existing chain database. Applying the update restarts this app. Native beta.1-to-beta.2 lifecycle acceptance remains pending.
+Use the normal Umbrel **Update** action; do not uninstall to update. The existing chain, settings and mining ledger volumes are reused. Updating restarts this app. Native install/update, relocation and real-ASIC lifecycle acceptance remain beta testing tasks.
 
-Dashboard: 8092. Stratum: 3390 / 4390. RPC remains private; node wallet and embedded DATUM remain disabled. The 0% SOLO pool starts only after current Purity chain identity and template checks pass.
-
-Validation: 21 Linux/image tests; isolated two-node pruned mining/block acceptance checks; peer persistence, authentication, disable behavior, wrong-chain rejection and shared-history cutoff tests; mobile settings in both themes. No mainnet shares or blocks were submitted during testing.
+Validation: 26 embedded Linux tests, settings authentication and persistence, chain cutoff and idle rotation tests, mobile pages in both themes, source-hash/image-state audit and anonymous image download verification. Upstream seed reference: https://bitcoinpurity.org/how-it-works.html.

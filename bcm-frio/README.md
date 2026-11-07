@@ -1,23 +1,15 @@
-# BCM FRIO Node (Beta) — 0.1.0-beta.6
+# BCM FRIO Node (Beta) — 0.1.0-beta.7
 
-Install through the BCM community store after publication. This beta is for Linux AMD64 and owner-run installation testing. It is not an official Umbrel endorsement or a claim of production readiness.
+The existing node, 0% SOLO pool and BCM dashboard now include automatic initial-sync peer assistance. Node binaries, mining policy, ports and data mounts are unchanged by this update.
 
-On first launch, enter the app password shown by Umbrel and select blockchain storage: pruned (default2048MiB, minimum550MiB) or unpruned. The node waits for that choice before connecting and downloading. Then enter your own FRIO receiving address. Mining remains gated until the FRIO chain and template are ready.
+Open **Node status → Sync peer settings**. Assistance uses FRIO mainnet, with its upstream seed list and P2P port 51775. Normal discovery continues. At most four automatic helper addresses are tried, within a total cap of seven including your optional addresses. Failed or idle automatic helpers are periodically replaced. Only public IPv4 endpoints are accepted.
 
-A block-file prune target is not total app disk usage and does not avoid the initial blockchain download/validation. Existing installations without a storage preference retain the prior2048MiB default. Change the target later from Node status → Blockchain storage settings; restart the app in Umbrel to apply a saved change. This screen never automatically stops mining, erases chain data, or reindexes a pruned archive into an unpruned one.
+Use the Umbrel app password to save preferences. Settings survive restarts and upgrades, apply within 20 seconds, and can disable automatic discovery or all assistance. Turning assistance off removes retry hints without dropping existing connections. Connected peers and peers downloading blocks are shown separately. The displayed blocks/second value is a measured recent sample, not a completion forecast. More peers do not guarantee faster sync.
 
-The app uses a wallet-disabled node and 0% mandatory pool fee. In private regtest, a pruned FRIO mining node synchronized from an archival peer and its full-value miner coinbase block was accepted by both nodes. Standard and high-difficulty Stratum use3370/4370; these host ports must be unused. Ports are bound on host interfaces; no router forwarding is configured. Administrative RPC remains on loopback in the private app network namespace.
+The helper is limited to initial block download and checks expected chain identity. All consensus validation and mining readiness gates remain enabled.
 
-Included UI: all ECX-style panels, identical Block Smasher motion/keyframes, 3D FRIO coin, silver dark/light themes, fixed 1M+ live-share-log filtering and optional coffee support. The display-only public coffee addresses are never pool fee recipients or fallback mining payouts. Unknown miner latency is explicitly not reported, never simulated.
+## Updating
 
-Private unit, HTTP setup, prune-mode block, persistent-state and browser tests have passed. Fresh native Umbrel install, first synchronization on your hardware, restart, upgrade, data relocation and real ASIC acceptance are not yet certified. Record those results during the beta test. No ECX app or VPS chain/payout configuration was migrated.
+Use the normal Umbrel **Update** action; do not uninstall to update. The existing chain, settings and mining ledger volumes are reused. Updating restarts this app. Native install/update, relocation and real-ASIC lifecycle acceptance remain beta testing tasks.
 
-Beta.2 fixes long decimal difficulty values in peak-chart tooltips. All visible proof values use compact suffixes (k/M/G/T/P/E); full numeric precision is retained in telemetry. Near-unit rounding promotes1000k to1M. Existing chain, settings and pool data are preserved during the normal app update.
-
-Beta.3 removes the minimum-difficulty dropdown and uses a fixed display-only1M threshold for the live log. All panel outlines match the green sampled from the3D FRIO coin. Compact tooltip fixes are included. Share totals, assigned mining difficulty, payouts and node settings are unchanged.
-
-Beta.4 also applies the 1M display threshold to peak-chart bars and tooltips, including keyboard navigation. Both chart scales begin at 1M. Share totals remain unchanged.
-
-Beta.5 adds optional read-only miner telemetry. In Node status > Worker latency settings, enter this pool LAN IP/hostname plus each miner LAN IPv4 address and firmware (harlo or axeos), then save using the Umbrel app password. Settings stay in app data, not the public image. Reads active-pool latency every 10 seconds, expires samples after 30 seconds, and excludes disconnected, other-pool, invalid, or ambiguous worker readings. No miner settings are written. Remote miners require a reachable supported telemetry source.
-
-Beta.6 fixes Block Smasher reset: it measures accepted proofs since the last confirmed pool block instead of a rolling 15-minute best. It resets when the block is first verified by this app, persists that boundary across restarts, and retains all historical records and totals. Existing installations start a fresh Smasher cycle on the first verification of their latest confirmed pool block after updating.
+Validation: 25 embedded Linux tests, settings authentication and persistence, chain cutoff and idle rotation tests, mobile pages in both themes, source-hash/image-state audit and anonymous image download verification. Upstream seed reference: https://github.com/Friotaioch/Friotaioch/blob/v1.0.2/src/kernel/chainparams.cpp.

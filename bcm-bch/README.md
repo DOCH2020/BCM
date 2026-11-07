@@ -1,13 +1,15 @@
-# BCM BCH Node (Beta) — 0.1.0-beta.2
+# BCM BCH Node (Beta) — 0.1.0-beta.3
 
-Install through the BCM community store. Linux AMD64 beta; not an official Umbrel endorsement or production-readiness certification.
+The existing node, 0% SOLO pool and BCM dashboard now include automatic initial-sync peer assistance. Node binaries, mining policy, ports and data mounts are unchanged by this update.
 
-On first launch use the app password shown by Umbrel, choose pruning (2048 MiB default, minimum550 MiB) or an unpruned archive, and enter your own receiving address. Mining stays gated until the node verifies the correct synchronized chain and a fresh template. Pruning does not eliminate initial blockchain download/validation or cap total app storage. An already-pruned archive needs a separate redownload to become unpruned; the app never automatically erases/reindexes it.
+Open **Node status → Sync peer settings**. Assistance uses Bitcoin Cash mainnet, with its upstream seed list and P2P port 8333. Normal discovery continues. At most four automatic helper addresses are tried, within a total cap of seven including your optional addresses. Failed or idle automatic helpers are periodically replaced. Only public IPv4 endpoints are accepted.
 
-BCH dashboard8090; standard/high Stratum3360/4360. Uses BCHN29.2.0 and verifies BCH fork identity, CashAddr, non-witness blocks and canonical transaction ordering. Dark-green panel outlines.
+Use the Umbrel app password to save preferences. Settings survive restarts and upgrades, apply within 20 seconds, and can disable automatic discovery or all assistance. Turning assistance off removes retry hints without dropping existing connections. Connected peers and peers downloading blocks are shown separately. The displayed blocks/second value is a measured recent sample, not a completion forecast. More peers do not guarantee faster sync.
 
-Full winning-miner coinbase reward, 0% mandatory pool fee, wallet disabled. Coffee support is optional and never a mining fee recipient. Includes all BCM panels, fixed1M live-log/peak-chart display filters, compact difficulty values, persisted Block Smasher reset after a confirmed pool block, and optional Harlo/AxeOS worker latency settings under Node status. Telemetry polls every10seconds, expires after30seconds and excludes wrong-pool/ambiguous readings. No miner configuration is written.
+The helper is limited to initial block download and checks expected chain identity. All consensus validation and mining readiness gates remain enabled.
 
-Each image passed17 tests and an isolated two-node block-acceptance test with pruning enabled on the mining node. No mainnet test shares, blocks or payments were sent. Native store install, initial sync on your hardware, real ASIC/rental acceptance, restart, upgrade and storage relocation remain beta acceptance checks. Install/sync the apps sequentially while observing resource headroom. Update existing installations normally; do not reinstall or delete chain/settings/pool data as a routine update step.
+## Updating
 
-Beta.2 keeps initial-sync telemetry visible before the BCH checkpoint can be verified. Mining remains gated until the actual BCH fork and current chain/template are verified. Existing chain/settings data are preserved by a normal update.
+Use the normal Umbrel **Update** action; do not uninstall to update. The existing chain, settings and mining ledger volumes are reused. Updating restarts this app. Native install/update, relocation and real-ASIC lifecycle acceptance remain beta testing tasks.
+
+Validation: 26 embedded Linux tests, settings authentication and persistence, chain cutoff and idle rotation tests, mobile pages in both themes, source-hash/image-state audit and anonymous image download verification. Upstream seed reference: https://github.com/bitcoin-cash-node/bitcoin-cash-node/blob/v29.2.0/src/chainparams.cpp.
