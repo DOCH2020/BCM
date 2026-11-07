@@ -1,0 +1,65 @@
+name: Publish audited peer-assistance app updates
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/publish-peer-assistance-20261107.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  packages: write
+concurrency:
+  group: publish-peer-assistance-20261107
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        include:
+          - coin: frio
+            version: 0.1.0-beta.7
+            sha256: 9e5c75b9e5ea434eb0751e8ef83fa20d804339c7ab0f9ddd54ecab8bdaace13c
+          - coin: bch
+            version: 0.1.0-beta.3
+            sha256: 28660429ecd3313d07c304b892da8af2be9b4de45ff1351fdbb7b27065f3bbf5
+          - coin: tar
+            version: 0.1.0-beta.2
+            sha256: 32a26fd3962b9c3ec1d42ed541fdbf6c94b57ff25f5e40530fda3d8579a6f14a
+          - coin: ecx
+            version: 0.1.0-beta.2
+            sha256: 6cbf0600846c0fcaf3b266ccf3e6f5132349c32e2de173fe77c7d9ecebca8133
+          - coin: btc1
+            version: 0.1.0-beta.3
+            sha256: eaa8ba3db8613beed3f7df874c52f33b4de99662fa1b1bca6294167dab383a93
+    steps:
+      - name: Download and verify audited image
+        env:
+          COIN: ${{ matrix.coin }}
+          VERSION: ${{ matrix.version }}
+          EXPECTED_SHA256: ${{ matrix.sha256 }}
+        run: |
+          curl --fail --location --retry 3 --output candidate.oci.tar "https://bcmpool.online/bcm-${COIN}-${VERSION}-amd64.oci.tar"
+          printf '%s  candidate.oci.tar\n' "$EXPECTED_SHA256" | sha256sum --check
+      - name: Publish immutable app image
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_ACTOR: ${{ github.actor }}
+          COIN: ${{ matrix.coin }}
+          VERSION: ${{ matrix.version }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends skopeo
+          skopeo copy oci-archive:candidate.oci.tar "docker-daemon:bcm-${COIN}-audited:${VERSION}"
+          printf '%s' "$GH_TOKEN" | docker login ghcr.io --username "$GH_ACTOR" --password-stdin
+          IMAGE="ghcr.io/doch2020/bcm-${COIN}:${VERSION}"
+          if docker manifest inspect "$IMAGE" >/dev/null 2>&1; then
+            echo 'The beta tag already exists; refusing to overwrite it.'
+            exit 1
+          fi
+          docker tag "bcm-${COIN}-audited:${VERSION}" "$IMAGE"
+          docker push "$IMAGE"
+          docker inspect --format='{{index .RepoDigests 0}}' "$IMAGE" >> "$GITHUB_STEP_SUMMARY"
+
