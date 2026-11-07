@@ -1,7 +1,17 @@
-# BCM BTC1 Purity Node (Beta)
+# BCM BTC1 Purity Node (Beta) — 0.1.0-beta.2
 
-Public beta candidate: Purity1.1.2, 0% SOLO pool, selectable pruning, full BCM dashboard, persisted Block Smasher reset and genuine miner telemetry. Separate chain/settings/pool data; RPC private, wallet disabled, embedded DATUM disabled. Mainnet mining requires Purity activation checkpoint961637.
+Bitcoin Purity 1.1.2 node, selectable pruning, zero-fee SOLO pool and BCM dashboard. AMD64 beta.
 
-Dashboard8092; Stratum3390/4390. Node budget3GiB RAM, two CPUs, dbcache512MiB. Pruning2048MiB default or unpruned; total storage and initial bandwidth exceed the prune target. Use a fresh dedicated app data directory and sync sequentially with existing apps. No personal peer overrides, assumevalid/minimum-work changes or preloaded chain snapshots. Native installation and real ASIC testing remain pending.
+## Sync peers
 
-Initial-sync telemetry remains visible below activation height961637. Mining waits for verified Purity identity, completed IBD and a fresh template. Native installation, real ASIC and lifecycle checks are beta acceptance tasks. Update normally; never reinstall as a routine update step. Coffee support is optional and is never a fee recipient.
+Open the app, expand **Node status**, then select **Sync peer settings**. Historical assistance defaults to enabled with seven public archive candidates. You can disable it or save up to seven public IPv4 endpoints using your Umbrel app password. Changes apply within 20 seconds and the settings file persists in the existing settings volume across restarts and upgrades.
+
+The helper retries archive peers only while downloading shared pre-fork history. It removes its retry hints when height 961631 is reached, initial download ends, or assistance is disabled. Existing connections may remain connected normally. Ordinary peer discovery continues. Peer availability and download speed vary; the address list is not a guarantee of service or a source of chain trust. Purity's consensus and activation identity checks remain authoritative.
+
+## Update
+
+Use Umbrel's normal app update. Do not uninstall to update. Existing chain, storage settings, payout and pool data mounts are unchanged; the daemon resumes its existing chain database. Applying the update restarts this app. Native beta.1-to-beta.2 lifecycle acceptance remains pending.
+
+Dashboard: 8092. Stratum: 3390 / 4390. RPC remains private; node wallet and embedded DATUM remain disabled. The 0% SOLO pool starts only after current Purity chain identity and template checks pass.
+
+Validation: 21 Linux/image tests; isolated two-node pruned mining/block acceptance checks; peer persistence, authentication, disable behavior, wrong-chain rejection and shared-history cutoff tests; mobile settings in both themes. No mainnet shares or blocks were submitted during testing.
