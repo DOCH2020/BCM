@@ -1,0 +1,30 @@
+{
+  "manifestVersion": 2,
+  "id": "bcm-soq",
+  "storage": {
+    "dataRoot": "data"
+  },
+  "category": "Finance",
+  "name": "BCM SOQ Node (Beta)",
+  "version": "0.1.0-beta.2",
+  "tagline": "Independent SOQ node and zero-fee SOLO pool",
+  "description": "One SOQ node with a wallet-free 0% SOLO Scrypt pool and BCM dashboard. Independent of LTC and DOGE. Includes pruning, automatic peer assistance and the 3D SOQ coin icon. Linux AMD64 beta.",
+  "releaseNotes": "Independent SOQ node and wallet-free 0% SOLO Scrypt pool. Includes pruning, SOQ-specific peer assistance, persistent worker latency settings, full BCM panels and the 3D SOQ icon. SOQ-only block and real TCP Stratum tests passed with wallets disabled, both pruned and unpruned, with full-value direct coinbase payout inspected. Embedded image tests and browser checks passed. Linux AMD64 beta; native lifecycle and real-ASIC/mainnet acceptance remain pending.",
+  "developer": "Bluefields Cryptocurrency Mining",
+  "website": "https://github.com/DOCH2020/BCM",
+  "dependencies": [],
+  "repo": "https://github.com/DOCH2020/BCM",
+  "support": "https://github.com/DOCH2020/BCM/issues",
+  "port": 8095,
+  "icon": "https://raw.githubusercontent.com/DOCH2020/BCM/main/bcm-soq-icon-3d-v1.png",
+  "gallery": [],
+  "path": "",
+  "defaultUsername": "",
+  "defaultPassword": "",
+  "deterministicPassword": true,
+  "submitter": "DOCH2020",
+  "backupIgnore": [
+    "data/chain/blocks/*",
+    "data/chain/chainstate/*"
+  ]
+}

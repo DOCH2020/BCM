@@ -1,5 +1,9 @@
 # BCM App Store
 
+## Independent SOQ SOLO app
+
+**BCM SOQ Node (Beta) 0.1.0-beta.2** runs one SOQ node and a 0% SOLO Scrypt pool without waiting for LTC or DOGE. Includes pruning, peer assistance, worker settings and the 3D SOQ coin. Dashboard 8095; ASIC/rentals 3402/4402. Linux AMD64 beta. See [setup and validation notes](bcm-soq/README.md).
+
 ## New triple-merged SOLO apps
 
 | App | Version | ASIC / rentals | Dashboard |
@@ -112,4 +116,5 @@ Both images passed17 tests and isolated two-node pruned mining/block-acceptance 
 **BCM BTC1 Purity Node (Beta)**, version **0.1.0-beta.1**, is available for Linux AMD64. It uses the verified official Purity1.1.2 release, a selectable pruned/full node, a0% direct-coinbase SOLO pool, and the BCM dashboard with3D coin artwork. Dashboard8092; standard/high Stratum3390/4390. Purity activation checkpoint961637 is required before mining; initial-sync metrics stay visible before activation. Wallet and embedded DATUM are disabled. Native lifecycle and actual hardware sync/miner acceptance remain beta checks. The image passed18 tests and independent two-node pruned block acceptance. Sync one substantial node at a time; pruning does not remove initial download/validation or cap total disk use.
 
 BCH beta.2 also fixes unavailable initial-sync telemetry before its BCH fork checkpoint. Existing data and mining gates are preserved during a normal update.
+
 
