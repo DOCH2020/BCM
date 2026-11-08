@@ -1,0 +1,52 @@
+name: Publish LTC merged sync tuning beta
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/publish-ltc-merged-sync-beta2.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  packages: write
+concurrency:
+  group: publish-ltc-merged-sync-beta2
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - coin: ltc-merged
+            version: 0.1.0-beta.2
+            sha256: c6a057eba5591ed721eac51c2c3f874bd51f805a7293c8e3c0de78f28923d0cf
+    steps:
+      - name: Download and verify audited image
+        env:
+          COIN: ${{ matrix.coin }}
+          VERSION: ${{ matrix.version }}
+          EXPECTED_SHA256: ${{ matrix.sha256 }}
+        run: |
+          curl --fail --location --retry 3 --output candidate.oci.tar "https://bcmpool.online/bcm-${COIN}-${VERSION}-amd64.oci.tar"
+          printf '%s  candidate.oci.tar\n' "$EXPECTED_SHA256" | sha256sum --check
+      - name: Publish immutable app image
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_ACTOR: ${{ github.actor }}
+          COIN: ${{ matrix.coin }}
+          VERSION: ${{ matrix.version }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends skopeo
+          skopeo copy oci-archive:candidate.oci.tar "docker-daemon:bcm-${COIN}-audited:${VERSION}"
+          printf '%s' "$GH_TOKEN" | docker login ghcr.io --username "$GH_ACTOR" --password-stdin
+          IMAGE="ghcr.io/doch2020/bcm-${COIN}:${VERSION}"
+          if docker manifest inspect "$IMAGE" >/dev/null 2>&1; then
+            echo 'The beta tag already exists; refusing to overwrite it.'
+            exit 1
+          fi
+          docker tag "bcm-${COIN}-audited:${VERSION}" "$IMAGE"
+          docker push "$IMAGE"
+          docker inspect --format='{{index .RepoDigests 0}}' "$IMAGE" >> "$GITHUB_STEP_SUMMARY"
