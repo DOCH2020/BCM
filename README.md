@@ -8,7 +8,7 @@
 
 | App | Version | ASIC / rentals | Dashboard |
 | --- | --- | --- | --- |
-| LTC + DOGE + SOQ | 0.1.0-beta.1 | 3400 / 4400 | 8093 |
+| LTC + DOGE + SOQ | 0.1.0-beta.2 | 3400 / 4400 | 8093 |
 | DGB Scrypt + DOGE + SOQ | 0.1.0-beta.1 | 3401 / 4401 | 8094 |
 
 Both apps include three nodes, independent pruning controls, automatic peer assistance and BCM dashboards with **0% SOLO** direct coinbase rewards. Linux AMD64 beta. Private-network mining and pruned Stratum tests passed; native Umbrel lifecycle and real ASIC/mainnet acceptance remain pending. See each app's README for receiving-address requirements and setup. Existing installed apps are not modified.

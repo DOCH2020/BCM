@@ -6,7 +6,7 @@
   },
   "category": "Finance",
   "name": "BCM LTC + DOGE + SOQ (Beta)",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0-beta.2",
   "tagline": "Three coins, one Scrypt miner, zero pool fee",
   "description": "Self-contained LTC parent, Dogecoin and Soqucoin nodes with selectable pruning, a wallet-free 0% SOLO merged pool, full BCM chain dashboards and automatic peer discovery. Linux AMD64 beta; destination lifecycle testing remains pending.",
   "developer": "Bluefields Cryptocurrency Mining",
@@ -22,5 +22,5 @@
   "defaultPassword": "",
   "deterministicPassword": true,
   "submitter": "DOCH2020",
-  "releaseNotes": "First 0% SOLO triple-merged beta. Includes three wallet-free nodes, independent pruning controls, automatic chain-specific peer assistance and BCM dashboards. Both parent combinations passed private-network merged-block and real Stratum tests, including pruned nodes; each image passed 11 embedded tests. Native Umbrel lifecycle and real ASIC/mainnet acceptance remain pending. Linux AMD64 only."
+  "releaseNotes": "Sync tuning: LTC database cache increases from 256 to 512 MiB and DOGE from 128 to 384 MiB, within the existing container memory limits. Peer connection capacity increases from 12 to 20. Existing pruning preferences, verified chain data, receiving addresses, 0% SOLO rules, private RPC and two validation threads per node are preserved. No chain reset or reindex is performed. Applied at normal update/restart. Speed improvements depend on peers, storage and validation workload. Linux AMD64 beta."
 }

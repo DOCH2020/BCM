@@ -28,3 +28,9 @@ Settings, each blockchain, the candidate journal and telemetry use separate pers
 Each image passed 11 isolated Linux tests and source/binary/license audits. Both combinations accepted merged parent/DOGE/SOQ blocks on private networks with wallets disabled, including pruned runs. Real TCP Stratum acceptance and duplicate rejection passed; full-value coinbase outputs were inspected. Desktop/mobile dashboard checks passed in both themes. Published images were anonymously downloadable before this store entry was created.
 
 Native Umbrel install/restart/update/relocation, mainnet initial-sync duration and real ASIC/mainnet operation remain acceptance tasks. Container memory limits total about 5.4 GiB per app, plus the host and other apps; actual steady-state use has not been measured on the destination. Linux AMD64 beta only.
+
+## Beta.2 sync tuning
+
+LTC uses 512 MiB of database cache (previously 256 MiB); DOGE uses 384 MiB (previously 128 MiB). SOQ stays at 128 MiB. The total increase is 512 MiB; container memory limits remain unchanged. Two script-validation threads per node are retained. Connection capacity is 20, with existing bounded DNS peer assistance and normal peer selection. More slots do not guarantee more useful downloads.
+
+This update preserves existing data mounts, pruning preferences, receiving addresses, private RPC and zero-fee mining rules. It requires an ordinary app restart and never deletes, reindexes or replaces a chain. It changes only the LTC merged app. Increased database cache can reduce disk work during initial validation; throughput still depends on current block density, peers, CPU and storage. 13 embedded image tests passed, including private mining/runtime tests and startup-option regression checks.

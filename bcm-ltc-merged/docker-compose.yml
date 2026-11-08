@@ -7,7 +7,7 @@
       }
     },
     "node": {
-      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.1@sha256:9891fdcff09960a7a77c148f689c200a3fc3814a6e94d92b66de79691b0d340c",
+      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.2@sha256:c581f6c0a652b51a3edb18d3d7da5184deec1819d2a0d56ae646fe9b0b6ceddf",
       "platform": "linux/amd64",
       "user": "1000:1000",
       "init": true,
@@ -46,7 +46,7 @@
       ]
     },
     "doge": {
-      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.1@sha256:9891fdcff09960a7a77c148f689c200a3fc3814a6e94d92b66de79691b0d340c",
+      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.2@sha256:c581f6c0a652b51a3edb18d3d7da5184deec1819d2a0d56ae646fe9b0b6ceddf",
       "platform": "linux/amd64",
       "user": "1000:1000",
       "init": true,
@@ -85,7 +85,7 @@
       ]
     },
     "soq": {
-      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.1@sha256:9891fdcff09960a7a77c148f689c200a3fc3814a6e94d92b66de79691b0d340c",
+      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.2@sha256:c581f6c0a652b51a3edb18d3d7da5184deec1819d2a0d56ae646fe9b0b6ceddf",
       "platform": "linux/amd64",
       "user": "1000:1000",
       "init": true,
@@ -124,7 +124,7 @@
       ]
     },
     "pool": {
-      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.1@sha256:9891fdcff09960a7a77c148f689c200a3fc3814a6e94d92b66de79691b0d340c",
+      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.2@sha256:c581f6c0a652b51a3edb18d3d7da5184deec1819d2a0d56ae646fe9b0b6ceddf",
       "platform": "linux/amd64",
       "user": "1000:1000",
       "init": true,
@@ -168,7 +168,7 @@
       ]
     },
     "dashboard": {
-      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.1@sha256:9891fdcff09960a7a77c148f689c200a3fc3814a6e94d92b66de79691b0d340c",
+      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.2@sha256:c581f6c0a652b51a3edb18d3d7da5184deec1819d2a0d56ae646fe9b0b6ceddf",
       "platform": "linux/amd64",
       "user": "1000:1000",
       "init": true,
