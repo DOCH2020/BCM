@@ -2,7 +2,7 @@
 
 ## Independent SOQ SOLO app
 
-**BCM SOQ Node (Beta) 0.1.0-beta.2** runs one SOQ node and a 0% SOLO Scrypt pool without waiting for LTC or DOGE. Includes pruning, peer assistance, worker settings and the 3D SOQ coin. Dashboard 8095; ASIC/rentals 3402/4402. Linux AMD64 beta. See [setup and validation notes](bcm-soq/README.md).
+**BCM SOQ Node (Beta) 0.1.0-beta.3** runs one SOQ node and a 0% SOLO Scrypt pool without waiting for LTC or DOGE. Includes pruning, peer assistance, worker settings and the 3D SOQ coin. Dashboard 8095; ASIC/rentals 3402/4402. Linux AMD64 beta. See [setup and validation notes](bcm-soq/README.md).
 
 ## New triple-merged SOLO apps
 
