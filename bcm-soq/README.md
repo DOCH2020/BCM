@@ -41,3 +41,7 @@ Official references: [SOQ release 2.6.1](https://github.com/soqucoin/soqucoin/re
 Goldshell settings accept mixed case and use the read-only MCB pool API. When miner-reported response time is unavailable, active authenticated workers can show **Stratum RTT**, measured with Linux TCP_INFO on their existing connection. This is the smoothed TCP round trip to the direct peer (a relay/proxy if present), not a miner-reported share response time or a ping. Stale, closed, and ambiguous connections do not receive a fabricated reading. Miner API samples take precedence when valid.
 
 Single-address journal entries now populate miner views; a bounded, checkpointed repair backfills beta.2 entries from the original journal without deleting retained history or Smasher reset boundaries. Candidate address filters are corrected. Worker rates are visibly labeled 5 min; pool rates remain 15 min. Tiny positive effort displays <0.01%; the one-minute SOQ round help now agrees with its clock. The 1M log/chart display filter remains in place.
+
+## Beta.4: show shares at every difficulty
+
+The Live Share Log shows the latest 80 events without a minimum proof difficulty, including rejected events whose proof difficulty is unavailable. The Peak Share Difficulty chart retains its time-bucket peak view and now includes every recorded positive accepted peak, with automatic log/linear scales. Empty periods stay blank. Totals and retained history are unchanged. Compact k/M/G/T/P formatting remains. This is a display-only change; mining and fee settings are unchanged.
