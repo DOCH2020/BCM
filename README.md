@@ -4,14 +4,14 @@
 
 **BCM SOQ Node (Beta) 0.1.0-beta.4** runs one SOQ node and a 0% SOLO Scrypt pool without waiting for LTC or DOGE. Includes pruning, peer assistance, worker settings and the 3D SOQ coin. Dashboard 8095; ASIC/rentals 3402/4402. Linux AMD64 beta. See [setup and validation notes](bcm-soq/README.md).
 
-## New triple-merged SOLO apps
+## Scrypt merged SOLO apps
 
 | App | Version | ASIC / rentals | Dashboard |
 | --- | --- | --- | --- |
-| LTC + DOGE + SOQ | 0.1.0-beta.2 | 3400 / 4400 | 8093 |
+| [BCM Scrypt Hub — LTC + DOGE + SOQ + PEP + BEL](bcm-ltc-merged/README.md) | 0.1.0-beta.3 | 3400 / 4400 | 8093 |
 | DGB Scrypt + DOGE + SOQ | 0.1.0-beta.1 | 3401 / 4401 | 8094 |
 
-Both apps include three nodes, independent pruning controls, automatic peer assistance and BCM dashboards with **0% SOLO** direct coinbase rewards. Linux AMD64 beta. Private-network mining and pruned Stratum tests passed; native Umbrel lifecycle and real ASIC/mainnet acceptance remain pending. See each app's README for receiving-address requirements and setup. Existing installed apps are not modified.
+Scrypt Hub updates the existing LTC merged app in place, preserving its app ID and original three chains, settings and history. Add your own PEP/BEL receiving addresses after updating; mining waits for completed setup and all five synchronized nodes. Includes five matching 3D coins and a new store icon. **0% SOLO**, Linux AMD64 beta; BEL uses an upstream release candidate. Native lifecycle and mainnet payout acceptance remain beta testing tasks. See the [upgrade and resource notes](bcm-ltc-merged/README.md). The DGB triple app remains separate and unchanged.
 
 ## Current sync-assistance updates
 

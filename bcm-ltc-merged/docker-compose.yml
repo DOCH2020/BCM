@@ -7,7 +7,7 @@
       }
     },
     "node": {
-      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.2@sha256:c581f6c0a652b51a3edb18d3d7da5184deec1819d2a0d56ae646fe9b0b6ceddf",
+      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.3@sha256:4ea8e36f87c53dd6d2bca245e657816606a780799f9f5226c3172a56f349a208",
       "platform": "linux/amd64",
       "user": "1000:1000",
       "init": true,
@@ -46,7 +46,7 @@
       ]
     },
     "doge": {
-      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.2@sha256:c581f6c0a652b51a3edb18d3d7da5184deec1819d2a0d56ae646fe9b0b6ceddf",
+      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.3@sha256:4ea8e36f87c53dd6d2bca245e657816606a780799f9f5226c3172a56f349a208",
       "platform": "linux/amd64",
       "user": "1000:1000",
       "init": true,
@@ -85,7 +85,7 @@
       ]
     },
     "soq": {
-      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.2@sha256:c581f6c0a652b51a3edb18d3d7da5184deec1819d2a0d56ae646fe9b0b6ceddf",
+      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.3@sha256:4ea8e36f87c53dd6d2bca245e657816606a780799f9f5226c3172a56f349a208",
       "platform": "linux/amd64",
       "user": "1000:1000",
       "init": true,
@@ -124,7 +124,7 @@
       ]
     },
     "pool": {
-      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.2@sha256:c581f6c0a652b51a3edb18d3d7da5184deec1819d2a0d56ae646fe9b0b6ceddf",
+      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.3@sha256:4ea8e36f87c53dd6d2bca245e657816606a780799f9f5226c3172a56f349a208",
       "platform": "linux/amd64",
       "user": "1000:1000",
       "init": true,
@@ -156,7 +156,9 @@
       "depends_on": [
         "node",
         "doge",
-        "soq"
+        "soq",
+        "pep",
+        "bel"
       ],
       "volumes": [
         "${APP_DATA_DIR}/data/ltc:/nodes/ltc:ro",
@@ -164,11 +166,13 @@
         "${APP_DATA_DIR}/data/soq:/nodes/soq:ro",
         "${APP_DATA_DIR}/data/settings:/settings:ro",
         "${APP_DATA_DIR}/data/pool:/pool",
-        "${APP_DATA_DIR}/data/telemetry:/telemetry"
+        "${APP_DATA_DIR}/data/telemetry:/telemetry",
+        "${APP_DATA_DIR}/data/pep:/nodes/pep:ro",
+        "${APP_DATA_DIR}/data/bel:/nodes/bel:ro"
       ]
     },
     "dashboard": {
-      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.2@sha256:c581f6c0a652b51a3edb18d3d7da5184deec1819d2a0d56ae646fe9b0b6ceddf",
+      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.3@sha256:4ea8e36f87c53dd6d2bca245e657816606a780799f9f5226c3172a56f349a208",
       "platform": "linux/amd64",
       "user": "1000:1000",
       "init": true,
@@ -200,7 +204,9 @@
       "depends_on": [
         "node",
         "doge",
-        "soq"
+        "soq",
+        "pep",
+        "bel"
       ],
       "volumes": [
         "${APP_DATA_DIR}/data/ltc:/nodes/ltc:ro",
@@ -208,12 +214,92 @@
         "${APP_DATA_DIR}/data/soq:/nodes/soq:ro",
         "${APP_DATA_DIR}/data/settings:/settings",
         "${APP_DATA_DIR}/data/pool:/pool:ro",
-        "${APP_DATA_DIR}/data/telemetry:/telemetry"
+        "${APP_DATA_DIR}/data/telemetry:/telemetry",
+        "${APP_DATA_DIR}/data/pep:/nodes/pep:ro",
+        "${APP_DATA_DIR}/data/bel:/nodes/bel:ro"
       ],
       "environment": {
         "BCM_SETUP_PASSWORD": "${APP_PASSWORD}",
         "FRIO_LAN_HOST": "${DEVICE_DOMAIN_NAME}"
       }
+    },
+    "pep": {
+      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.3@sha256:4ea8e36f87c53dd6d2bca245e657816606a780799f9f5226c3172a56f349a208",
+      "platform": "linux/amd64",
+      "user": "1000:1000",
+      "init": true,
+      "restart": "on-failure",
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "tmpfs": [
+        "/tmp:rw,size=64m,mode=1777"
+      ],
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      },
+      "command": [
+        "node",
+        "pep"
+      ],
+      "mem_limit": "1g",
+      "cpus": 1,
+      "stop_grace_period": "180s",
+      "volumes": [
+        "${APP_DATA_DIR}/data/pep:/nodes/pep",
+        "${APP_DATA_DIR}/data/settings:/settings:ro"
+      ],
+      "network_mode": "service:node",
+      "depends_on": [
+        "node"
+      ]
+    },
+    "bel": {
+      "image": "ghcr.io/doch2020/bcm-ltc-merged:0.1.0-beta.3@sha256:4ea8e36f87c53dd6d2bca245e657816606a780799f9f5226c3172a56f349a208",
+      "platform": "linux/amd64",
+      "user": "1000:1000",
+      "init": true,
+      "restart": "on-failure",
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "tmpfs": [
+        "/tmp:rw,size=64m,mode=1777"
+      ],
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      },
+      "command": [
+        "node",
+        "bel"
+      ],
+      "mem_limit": "1g",
+      "cpus": 1,
+      "stop_grace_period": "180s",
+      "volumes": [
+        "${APP_DATA_DIR}/data/bel:/nodes/bel",
+        "${APP_DATA_DIR}/data/settings:/settings:ro"
+      ],
+      "network_mode": "service:node",
+      "depends_on": [
+        "node"
+      ]
     }
   }
 }

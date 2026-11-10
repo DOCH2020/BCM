@@ -5,22 +5,22 @@
     "dataRoot": "data"
   },
   "category": "Finance",
-  "name": "BCM LTC + DOGE + SOQ (Beta)",
-  "version": "0.1.0-beta.2",
-  "tagline": "Three coins, one Scrypt miner, zero pool fee",
-  "description": "Self-contained LTC parent, Dogecoin and Soqucoin nodes with selectable pruning, a wallet-free 0% SOLO merged pool, full BCM chain dashboards and automatic peer discovery. Linux AMD64 beta; destination lifecycle testing remains pending.",
+  "name": "BCM Scrypt Hub (Beta)",
+  "version": "0.1.0-beta.3",
+  "tagline": "Five chains, one Scrypt miner, 0% SOLO",
+  "description": "Five independent nodes: Litecoin, Dogecoin, Soqucoin, Pepecoin and Bellscoin, with selectable pruning, automatic peer discovery and a wallet-free 0% SOLO Scrypt merged pool. Includes BCM dashboards and matching 3D coin icons. Linux AMD64 beta. BEL uses an upstream release candidate. Existing installations need PEP and BEL receiving addresses before mining resumes; all five nodes must finish synchronization. Native upgrade and mainnet payout acceptance remain beta tests.",
   "developer": "Bluefields Cryptocurrency Mining",
   "website": "https://github.com/DOCH2020/BCM",
   "dependencies": [],
   "repo": "https://github.com/DOCH2020/BCM",
   "support": "https://github.com/DOCH2020/BCM/issues",
   "port": 8093,
-  "icon": "https://raw.githubusercontent.com/DOCH2020/BCM/main/bcm-ltc-merged-icon-3d-v1.png",
+  "icon": "https://bcmpool.online/bcm-scrypt-hub-icon-3d-v1.png",
   "gallery": [],
   "path": "",
   "defaultUsername": "",
   "defaultPassword": "",
   "deterministicPassword": true,
   "submitter": "DOCH2020",
-  "releaseNotes": "Sync tuning: LTC database cache increases from 256 to 512 MiB and DOGE from 128 to 384 MiB, within the existing container memory limits. Peer connection capacity increases from 12 to 20. Existing pruning preferences, verified chain data, receiving addresses, 0% SOLO rules, private RPC and two validation threads per node are preserved. No chain reset or reindex is performed. Applied at normal update/restart. Speed improvements depend on peers, storage and validation workload. Linux AMD64 beta."
+  "releaseNotes": "Scrypt Hub expands the existing LTC + DOGE + SOQ app with PEP and BEL nodes, a five-chain 0% SOLO engine and new 3D artwork. Keeps app ID, original chain data, pruning settings, pool history, dashboard 8093 and mining ports 3400/4400. Original three receiving addresses remain locked during upgrade; add valid PEP and BEL destinations in setup. Mining waits for completed setup and all five verified chains. Existing owner miner logins are preserved. Passed 22 regression tests and real five-chain Stratum/block checks with pruning enabled and disabled. Linux AMD64 beta; BEL upstream is prerelease. Back up app data and update in place, not by uninstalling. Allow additional disk, RAM and sync time for two new nodes."
 }

@@ -1,36 +1,28 @@
-# BCM LTC + DOGE + SOQ (Beta) — 0.1.0-beta.1
+# BCM Scrypt Hub (Beta) — 0.1.0-beta.3
 
-Three self-contained nodes, a wallet-free **0% SOLO** Scrypt merged pool, and the full BCM dashboard. No PPLNS or mandatory pool fee. Each chain pays its own full miner coinbase reward directly to the chosen receiving address, subject to that chain's maturity rules.
+LTC + DOGE + SOQ + PEP + BEL. Five independent nodes share one wallet-free **0% SOLO** Scrypt mining connection. Each chain pays its full miner coinbase reward directly to its configured receiving address, subject to consensus and maturity. A proof may qualify for only a subset of coins. No PPLNS or custodial balance is included.
 
-## Setup
+## Update the existing app
 
-Open the app from Umbrel. Use its app password to configure storage, then supply one receiving address for LTC, DOGE and SOQ. Use a transparent LTC address for the LTC app; an MWEB-only destination is unsupported. SOQ requires a spendable witness-v1 Dilithium address (`sq1p...`). Never enter wallet seeds or private keys.
+Back up your app data, then update the existing LTC + DOGE + SOQ entry through Umbrel. Its app ID remains `bcm-ltc-merged`; do not uninstall or create a second copy. Existing LTC/DOGE/SOQ chain directories, pruning settings, original receiving addresses, pool history and telemetry mounts are retained. No chain deletion or automatic reindex occurs.
 
-Pruning defaults: parent 2048 MiB, DOGE 3072 MiB, SOQ 3072 MiB. Minimums: parent 550 MiB, DOGE/SOQ 2200 MiB; zero chooses unpruned. These are retained block-file targets, not total disk or initial bandwidth limits. Changing running-node storage requires a normal app restart. Switching an already-pruned chain to unpruned requires a separate rebuild and is blocked by the app. All three chains must synchronize before mining starts.
+Open the app after updating. Upgrade setup displays the original three destinations read-only; add your own valid PEP and BEL receiving addresses using the Umbrel app password. Never enter private keys or seed phrases. LTC must be transparent, and SOQ must be a spendable Dilithium witness-v1 address. An original-settings backup is kept before migration.
 
-## ASIC connection
+**Mining pauses until setup is complete and all five chains are synchronized and verified.** Existing owner `LTC_ADDRESS.worker` and matching legacy three-address logins select the five saved destinations after upgrade. Other miners must use all five addresses: `LTC+DOGE+SOQ+PEP+BEL.worker`.
 
-- Algorithm: **Scrypt**.
-- URL: `stratum+tcp://YOUR_UMBREL_IP:3400`; rental listener `4400`.
-- Username: `YOUR_LTC_ADDRESS.worker`, using exactly the parent address saved during setup. This selects the saved DOGE and SOQ destinations.
-- Password: `x`.
+## Connection and storage
 
-Advanced users can explicitly supply all three destinations as `PARENT_ADDRESS+DOGE_ADDRESS+SOQ_ADDRESS.worker`. A different parent-only username is rejected. A qualifying proof may solve any subset of the three coins; it does not guarantee all three rewards.
+- Algorithm: Scrypt. ASIC: `stratum+tcp://YOUR_UMBREL_HOST:3400`; high-difficulty rentals: port `4400`. Password `x`. Dashboard port `8093`.
+- Existing ports are unchanged; no additional host ports or router forwarding are configured. Administrative RPC stays private.
+- Retained block-file defaults: LTC 2048 MiB; DOGE, SOQ and PEP 3072 MiB each; BEL 2048 MiB. Zero selects unpruned before initial sync. Old pruning choices are retained. Pruning does not limit initial download, chainstate or total disk use.
+- Container memory caps total about 7.4 GiB, plus the host and other apps. They are limits, not reserved or measured steady-state usage. Two additional chains need additional storage, CPU, bandwidth and initial-sync time. Linux AMD64 only.
 
-## Dashboard and operation
+## Beta validation and upstreams
 
-Coin tabs show separate network statistics, round effort, candidate history and Smasher cycles. Shared physical hashrate is not added three times. Worker cards, live shares, charts, optional miner latency, coffee support, pruning and per-chain peer settings are included. Automatic peer discovery uses each chain's upstream seeds and bounded helper rotation. More peers cannot guarantee faster validation.
+The published image is pinned by digest and its manifest/layers were verified anonymously downloadable. Twenty-two isolated Linux regression tests passed, including settings migration, wrong-chain rejection, stale-tip/peer gates, candidate journaling and duplicate rejection. Official daemons accepted all five chains' blocks through real loopback Stratum with pruning both enabled and disabled; unpruned coinbases were inspected for full direct payouts. No mainnet test shares or blocks were submitted. Dashboard artwork was verified in a real browser with synthetic data.
 
-Settings, each blockchain, the candidate journal and telemetry use separate persistent data mounts. RPC stays private inside the app namespace. The app has no wallet or custodial balance. Use normal Umbrel restart/update actions and keep app-data backups; do not uninstall to update.
+PEP uses official v1.1.0; BEL uses official **v3.1.1-rc2, an upstream prerelease**. Existing LTC/DOGE/SOQ pinned versions remain. Native Umbrel lifecycle, mainnet synchronization, ASIC acceptance, matured payouts and recovery after an auxiliary daemon loses its work cache still require beta acceptance testing. This is not a production-readiness claim.
 
-## Beta validation
+Per-chain tabs show that coin's network, blocks, effort and round; shared physical hashrate is counted once. New PEP/BEL crystal-metal 3D coins and a matching five-coin store icon are included. Existing Umbrel dashboard styling remains separate from the public VPS pool website.
 
-Each image passed 11 isolated Linux tests and source/binary/license audits. Both combinations accepted merged parent/DOGE/SOQ blocks on private networks with wallets disabled, including pruned runs. Real TCP Stratum acceptance and duplicate rejection passed; full-value coinbase outputs were inspected. Desktop/mobile dashboard checks passed in both themes. Published images were anonymously downloadable before this store entry was created.
-
-Native Umbrel install/restart/update/relocation, mainnet initial-sync duration and real ASIC/mainnet operation remain acceptance tasks. Container memory limits total about 5.4 GiB per app, plus the host and other apps; actual steady-state use has not been measured on the destination. Linux AMD64 beta only.
-
-## Beta.2 sync tuning
-
-LTC uses 512 MiB of database cache (previously 256 MiB); DOGE uses 384 MiB (previously 128 MiB). SOQ stays at 128 MiB. The total increase is 512 MiB; container memory limits remain unchanged. Two script-validation threads per node are retained. Connection capacity is 20, with existing bounded DNS peer assistance and normal peer selection. More slots do not guarantee more useful downloads.
-
-This update preserves existing data mounts, pruning preferences, receiving addresses, private RPC and zero-fee mining rules. It requires an ordinary app restart and never deletes, reindexes or replaces a chain. It changes only the LTC merged app. Increased database cache can reduce disk work during initial validation; throughput still depends on current block density, peers, CPU and storage. 13 embedded image tests passed, including private mining/runtime tests and startup-option regression checks.
+Runtime source, tests, license notices and exact input lock: [beta.3 source archive](https://bcmpool.online/bcm-scrypt-hub-0.1.0-beta.3-source.tar.gz). Upstream node source/version references are recorded in its input lock. Official PEP source: https://github.com/pepecoinppc/pepecoin/tree/v1.1.0 ; BEL: https://github.com/BellsChain/bellscoin/tree/v3.1.1-rc2 .
