@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Runs on the host before Docker creates any bind-mount source directories.
+# The nodes themselves remain unprivileged and their images stay unchanged.
+exec python3 - <<'PY'
+import os
+import stat
+import sys
+
+APP = 'bcm-ltc-merged'
+DIRECTORIES = ('ltc', 'doge', 'soq', 'pep', 'bel', 'settings', 'pool', 'telemetry')
+
+def prepare():
+    if os.environ.get('APP_ID', APP) != APP:
+        raise ValueError('Unexpected app ID')
+    app_dir = os.environ.get('APP_DATA_DIR', '')
+    if not app_dir or not os.path.isabs(app_dir):
+        raise ValueError('APP_DATA_DIR must be an absolute app directory')
+    # umbrelOS 2 supports relocated app data. Never recreate internal data when
+    # an explicit external root is configured but unavailable.
+    explicit = os.environ.get('APP_DATA_ROOT')
+    root = explicit if explicit else os.path.join(app_dir, 'data')
+    if not os.path.isabs(root) or os.path.normpath(root) in ('/', os.path.normpath(app_dir)):
+        raise ValueError('Unsafe app data root')
+    if os.geteuid() != 0:
+        raise PermissionError('This lifecycle hook requires the Umbrel host service')
+    if explicit and not os.path.isdir(root):
+        raise FileNotFoundError('Configured app data root is unavailable')
+    if not explicit:
+        try:
+            os.mkdir(root, 0o750)
+        except FileExistsError:
+            pass
+    flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+    fd = os.open(root, flags)
+    try:
+        # Validate all existing entries before changing ownership anywhere.
+        for name in DIRECTORIES:
+            try:
+                info = os.stat(name, dir_fd=fd, follow_symlinks=False)
+            except FileNotFoundError:
+                continue
+            if not stat.S_ISDIR(info.st_mode):
+                raise ValueError('Expected a real app directory: ' + name)
+        handles = []
+        try:
+            for name in DIRECTORIES:
+                try:
+                    os.mkdir(name, 0o750, dir_fd=fd)
+                except FileExistsError:
+                    pass
+                handles.append(os.open(name, flags, dir_fd=fd))
+            # Only these directory inodes are repaired. No recursive chown,
+            # no chain traversal, no settings rewrite and no data deletion.
+            for handle in [fd] + handles:
+                info = os.fstat(handle)
+                if (info.st_uid, info.st_gid) != (1000, 1000):
+                    os.fchown(handle, 1000, 1000)
+                mode = stat.S_IMODE(info.st_mode)
+                if mode & 0o700 != 0o700:
+                    os.fchmod(handle, mode | 0o700)
+        finally:
+            for handle in handles:
+                os.close(handle)
+    finally:
+        os.close(fd)
+
+try:
+    prepare()
+except (OSError, ValueError) as error:
+    print('BCM Scrypt Hub storage initialization failed: ' + str(error), file=sys.stderr)
+    sys.exit(1)
+print('BCM Scrypt Hub storage ready: app directories owned by 1000:1000; existing data retained.')
+PY

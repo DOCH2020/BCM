@@ -6,7 +6,7 @@
   },
   "category": "Finance",
   "name": "BCM Scrypt Hub (Beta)",
-  "version": "0.1.0-beta.3",
+  "version": "0.1.0-beta.4",
   "tagline": "Five chains, one Scrypt miner, 0% SOLO",
   "description": "Five independent nodes: Litecoin, Dogecoin, Soqucoin, Pepecoin and Bellscoin, with selectable pruning, automatic peer discovery and a wallet-free 0% SOLO Scrypt merged pool. Includes BCM dashboards and matching 3D coin icons. Linux AMD64 beta. BEL uses an upstream release candidate. Existing installations need PEP and BEL receiving addresses before mining resumes; all five nodes must finish synchronization. Native upgrade and mainnet payout acceptance remain beta tests.",
   "developer": "Bluefields Cryptocurrency Mining",
@@ -22,5 +22,5 @@
   "defaultPassword": "",
   "deterministicPassword": true,
   "submitter": "DOCH2020",
-  "releaseNotes": "Scrypt Hub expands the existing LTC + DOGE + SOQ app with PEP and BEL nodes, a five-chain 0% SOLO engine and new 3D artwork. Keeps app ID, original chain data, pruning settings, pool history, dashboard 8093 and mining ports 3400/4400. Original three receiving addresses remain locked during upgrade; add valid PEP and BEL destinations in setup. Mining waits for completed setup and all five verified chains. Existing owner miner logins are preserved. Passed 22 regression tests and real five-chain Stratum/block checks with pruning enabled and disabled. Linux AMD64 beta; BEL upstream is prerelease. Back up app data and update in place, not by uninstalling. Allow additional disk, RAM and sync time for two new nodes."
+  "releaseNotes": "Installer repair for fresh installs and upgrades: prepare all five node directories plus settings, pool and telemetry before containers start, with owner 1000:1000. Fixes root-owned PEP/BEL folders that prevented node startup and caused the setup error \"The nodes or settings storage are not ready; try again shortly\". Uses Umbrel lifecycle hooks, supports the configured relocated data root, and does not traverse chains or change receiving addresses, pruning settings, history, ports or mining rules. Installer-only update: retains the exact verified beta.3 runtime image and digest. Update in place; do not uninstall."
 }
