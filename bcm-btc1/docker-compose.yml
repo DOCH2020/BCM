@@ -7,7 +7,7 @@
       }
     },
     "node": {
-      "image": "ghcr.io/doch2020/bcm-btc1:0.1.0-beta.5@sha256:41ff203d4d766370e1b872ba36dbc3c89535139e004e362320fab103d96fcad2",
+      "image": "ghcr.io/doch2020/bcm-btc1:0.1.0-beta.6@sha256:fdb253affb1c5e4afe32565d149015cd1e063a584b0fae56d73a6edc3c4a84c2",
       "platform": "linux/amd64",
       "user": "1000:1000",
       "init": true,
@@ -59,7 +59,7 @@
       "memswap_limit": "6g"
     },
     "pool": {
-      "image": "ghcr.io/doch2020/bcm-btc1:0.1.0-beta.5@sha256:41ff203d4d766370e1b872ba36dbc3c89535139e004e362320fab103d96fcad2",
+      "image": "ghcr.io/doch2020/bcm-btc1:0.1.0-beta.6@sha256:fdb253affb1c5e4afe32565d149015cd1e063a584b0fae56d73a6edc3c4a84c2",
       "platform": "linux/amd64",
       "user": "1000:1000",
       "init": true,
@@ -98,7 +98,7 @@
       ]
     },
     "dashboard": {
-      "image": "ghcr.io/doch2020/bcm-btc1:0.1.0-beta.5@sha256:41ff203d4d766370e1b872ba36dbc3c89535139e004e362320fab103d96fcad2",
+      "image": "ghcr.io/doch2020/bcm-btc1:0.1.0-beta.6@sha256:fdb253affb1c5e4afe32565d149015cd1e063a584b0fae56d73a6edc3c4a84c2",
       "platform": "linux/amd64",
       "user": "1000:1000",
       "init": true,
